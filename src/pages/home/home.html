@@ -1,14 +1,55 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar no-border-bottom color="primary">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+      <ion-buttons end>
+        <button ion-button icon-only>
+          <ion-icon name="home"></ion-icon>
+        </button>
+        <button ion-button icon-only>
+            <ion-icon name="log-out"></ion-icon>
+          </button>
+      </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+    <ion-card  *ngFor="let element of data">
+        <ion-card-header color="light">
+          Something in greek
+        </ion-card-header>
+        <ion-card-content padding>
+            <ion-grid>
+                <ion-row text-center class="tableHead">
+                    <ion-col col-5>Account</ion-col>
+                    <ion-col col>Description</ion-col>
+                    <ion-col col>Balance</ion-col>
+                </ion-row>
+                <ion-row *ngFor="let subelement of element" (click)="send(subelement)" text-center>
+                    <ion-col col-1>
+                        <a><ion-icon color="primary" name="add-circle"></ion-icon></a>
+                    </ion-col>
+                    <ion-col col-4>{{subelement?.account}}</ion-col>
+                    <ion-col col>{{subelement?.desc}}</ion-col>
+                    <ion-col col>{{subelement?.balance}}</ion-col>
+                    <ion-col col-12 class="more" [hidden]="subelement?.hidden">
+                            <ion-row>Current balance {{subelement?.balance}} </ion-row>
+                            <ion-row>Incl. ovrdraft</ion-row>
+                            <ion-row>Description {{subelement?.desc}}</ion-row>
+                        </ion-col>
+                </ion-row>
+                
+            </ion-grid>        
+        </ion-card-content>
+    </ion-card>
+    <ion-fab bottom right #fab>
+        <button ion-fab [disabled]="!selected"><ion-icon name="apps"></ion-icon></button>
+        <ion-fab-list side="top">
+          <button ion-fab color="secondary" ><ion-icon name="log-in"></ion-icon><ion-label>text</ion-label></button>
+          <button ion-fab color="secondary" ><ion-icon name="contact"></ion-icon><ion-label>long text</ion-label></button>
+          <button ion-fab color="secondary" ><ion-icon name="cash"></ion-icon><ion-label>very long text</ion-label></button>
+          <button ion-fab color="secondary" ><ion-icon name="log-out"></ion-icon><ion-label>txt</ion-label></button>
+        </ion-fab-list>
+      </ion-fab>
 </ion-content>

@@ -1,3 +1,51 @@
-page-home {
+ion-card-header {
+    background-color: color($colors, primary);
+}
 
+ion-col {
+    padding: 5px;
+    border-bottom: 1px solid lightgray;
+}
+
+ion-row {
+    margin: 0%;
+}
+
+ion-grid {
+    padding: 0px !important;
+    box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+}
+
+.more {
+    padding: 4%;
+    color : color($colors, primary);
+}
+
+.tableHead {
+    color: color($colors, secondary);
+}
+
+.scroll-content {
+	overflow: hidden;
+}
+
+button[ion-fab] {
+    overflow: visible;
+    position: relative;
+
+    ion-label {
+        position: absolute;
+        top: -8px;
+        right: 40px;
+
+        color: white;
+        background-color: rgba(0,0,0,0.7);
+        line-height: 24px;
+        padding: 4px 8px;
+        border-radius: 4px;
+    }
+}
+
+.fab {
+    contain: layout;
 }
