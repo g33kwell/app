@@ -29,6 +29,11 @@ export class HomePage {
       'desc' : 'Description',
       'balance' : '9276864387',
       'hidden' : true
+    },{
+      'account' : '0-857210867-0 EUR',
+      'desc' : 'Description',
+      'balance' : '9276864387',
+      'hidden' : true
     }]
   ];
 
