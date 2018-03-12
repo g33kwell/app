@@ -1,0 +1,46 @@
+ion-card-header {
+    background-color: color($colors, primary);
+}
+
+button[ion-fab] {
+    overflow: visible;
+    position: relative;
+
+    ion-label {
+        position: absolute;
+        top: -8px;
+        right: 40px;
+
+        color: white;
+        background-color: rgba(0,0,0,0.7);
+        line-height: 24px;
+        padding: 4px 8px;
+        border-radius: 4px;
+    }
+}
+
+.fab {
+    contain: layout;
+}
+
+ion-backdrop {
+    opacity: 0.9 !important;
+}
+
+.loading-wrapper {
+    justify-content: center;
+    width: 100%;
+}
+
+
+.label[stacked] {    
+    font-size: 1.6rem;
+} 
+
+.lastItem {
+    border-bottom: 0 !important;
+}
+
+#print:hover {
+    cursor: pointer;
+}
