@@ -48,12 +48,12 @@ export class HomePage {
   }
 
   ngAfterViewInit() {
-    let loading = this.loadingCtrl.create({
+    /*let loading = this.loadingCtrl.create({
       content: `<p><ion-spinner name="bubbles"></ion-spinner></p><p>Loading...</p>`,
       duration: 3000
     });
 
-    loading.present();
+    loading.present();*/
       
   }
 
