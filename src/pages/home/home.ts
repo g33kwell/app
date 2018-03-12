@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { NavController } from "ionic-angular";
+import { NavController, LoadingController, FabContainer } from "ionic-angular";
 
 @Component({
   selector: "page-home",
@@ -37,20 +37,38 @@ export class HomePage {
     }]
   ];
 
-  selected = false;
+  selected: any = {
+    'account' : '',
+    'desc' : '',
+    'balance' : '',
+    'hidden' : true
+  };
 
-  constructor(public navCtrl: NavController) {
-    console.log(this.data)
+  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController) {
   }
 
-  send(element){
+  ngAfterViewInit() {
+    let loading = this.loadingCtrl.create({
+      content: `<p><ion-spinner name="bubbles"></ion-spinner></p><p>Loading...</p>`,
+      duration: 3000
+    });
+
+    loading.present();
+      
+  }
+
+  send(element, fab?: FabContainer){
     if(element.hidden){
+      this.selected.hidden = true;
       element.hidden = false;
-      this.selected = true;
+      this.selected = element;
     }
     else{
       element.hidden = true;
-      this.selected = false;
+      this.selected = element;
+      if (fab !== undefined) {
+        fab.close();
+      }
     }
   }
 }

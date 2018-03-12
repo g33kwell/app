@@ -26,14 +26,14 @@
                     <ion-col col>Description</ion-col>
                     <ion-col col>Balance</ion-col>
                 </ion-row>
-                <ion-row *ngFor="let subelement of element" (click)="send(subelement)" text-center>
+                <ion-row *ngFor="let subelement of element" (click)="send(subelement,fab)" text-center>
                     <ion-col col-1>
-                        <a><ion-icon color="primary" name="add-circle"></ion-icon></a>
+                        <ion-icon color="primary" name="add-circle"></ion-icon>
                     </ion-col>
                     <ion-col col-4>{{subelement?.account}}</ion-col>
                     <ion-col col>{{subelement?.desc}}</ion-col>
                     <ion-col col>{{subelement?.balance}}</ion-col>
-                    <ion-col col-12 class="more" [hidden]="subelement?.hidden">
+                    <ion-col col-12 class="more" [hidden]="subelement?.hidden || selected.hidden">
                             <ion-row>Current balance {{subelement?.balance}} </ion-row>
                             <ion-row>Incl. ovrdraft</ion-row>
                             <ion-row>Description {{subelement?.desc}}</ion-row>
@@ -44,7 +44,7 @@
         </ion-card-content>
     </ion-card>
     <ion-fab bottom right #fab>
-        <button ion-fab [disabled]="!selected"><ion-icon name="apps"></ion-icon></button>
+        <button ion-fab [disabled]="selected.hidden"><ion-icon name="apps"></ion-icon></button>
         <ion-fab-list side="top">
           <button ion-fab color="secondary" ><ion-icon name="log-in"></ion-icon><ion-label>text</ion-label></button>
           <button ion-fab color="secondary" ><ion-icon name="contact"></ion-icon><ion-label>long text</ion-label></button>

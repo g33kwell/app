@@ -25,10 +25,6 @@ ion-grid {
     color: color($colors, secondary);
 }
 
-.scroll-content {
-	overflow: hidden;
-}
-
 button[ion-fab] {
     overflow: visible;
     position: relative;
@@ -48,4 +44,13 @@ button[ion-fab] {
 
 .fab {
     contain: layout;
+}
+
+ion-backdrop {
+    opacity: 0.9 !important;
+}
+
+.loading-wrapper {
+    justify-content: center;
+    width: 100%;
 }
