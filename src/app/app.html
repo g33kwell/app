@@ -12,8 +12,112 @@
               <ion-list-header>
                 Navigate
               </ion-list-header>
-              
+              <button ion-item menuClose *ngFor="let p of appPages" (click)="openPage(p)">
+                <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
+                {{p.title}}
+              </button>
             </ion-list>
+      
+            <ion-list>
+              <ion-list-header>
+                Cards
+              </ion-list-header>
+              <button ion-item >
+                <ion-icon item-start name="heart" ></ion-icon>
+                My cards
+              </button>
+              <button ion-item >
+                <ion-icon item-start name="heart" ></ion-icon>
+                Card details
+              </button>
+              <button ion-item >
+                <ion-icon item-start name="heart" ></ion-icon>
+                Transaction history
+              </button>
+              <button ion-item >
+                <ion-icon item-start name="heart" ></ion-icon>
+                Card payment
+              </button>
+            </ion-list>
+      
+            <ion-list>
+              <ion-list-header>
+                Transfers
+              </ion-list-header>
+              <button ion-item >
+                <ion-icon item-start name="hammer"></ion-icon>
+                COOP Transfers
+              </button>
+              <button ion-item >
+                <ion-icon item-start name="hammer"></ion-icon>
+                SEPA transfers
+              </button>
+              <button ion-item >
+                <ion-icon item-start name="hammer"></ion-icon>
+                Standing orders
+              </button>
+            </ion-list>
+
+            <ion-list>
+              <ion-list-header>
+                Utility payments
+              </ion-list-header>
+              <button ion-item >
+                <ion-icon item-start name="hammer"></ion-icon>
+                Utility organisation payment
+              </button>
+            </ion-list>
+
+            <ion-list>
+              <ion-list-header>
+                Cheques
+              </ion-list-header>
+              <button ion-item >
+                <ion-icon item-start name="hammer"></ion-icon>
+                Order cheque book
+              </button>
+              <button ion-item >
+                <ion-icon item-start name="hammer"></ion-icon>
+                Cheque stoppage
+              </button>
+              <button ion-item >
+                <ion-icon item-start name="hammer"></ion-icon>
+                Cheque inquiry
+              </button>
+            </ion-list>
+
+            <ion-list>
+              <ion-list-header>
+                Term deposits
+              </ion-list-header>
+              <button ion-item >
+                <ion-icon item-start name="hammer"></ion-icon>
+                Term deposits
+              </button>
+            </ion-list>
+
+            <ion-list>
+              <ion-list-header>
+                Services
+              </ion-list-header>
+              <button ion-item >
+                <ion-icon item-start name="hammer"></ion-icon>
+                Inbox
+              </button>
+              <button ion-item >
+                <ion-icon item-start name="hammer"></ion-icon>
+                Send message
+              </button>
+              <button ion-item >
+                <ion-icon item-start name="hammer"></ion-icon>
+                Profile settings
+              </button>
+            </ion-list>
+
+            <button id="logout" ion-item color="primary">
+              <ion-icon item-start name="log-out"></ion-icon>
+                  Log out
+              </button>
             
           </ion-content>
     </ion-menu>
