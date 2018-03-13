@@ -8,6 +8,9 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AccountDetailsPage } from '../pages/account-details/account-details';
 
+import { File } from '@ionic-native/file';
+import { FileOpener } from '@ionic-native/file-opener';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -28,7 +31,9 @@ import { AccountDetailsPage } from '../pages/account-details/account-details';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    File,
+    FileOpener
   ]
 })
 export class AppModule {}
