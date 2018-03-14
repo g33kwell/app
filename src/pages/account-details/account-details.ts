@@ -99,7 +99,7 @@ export class AccountDetailsPage {
                 },
         
                 {
-                  text: 'Printed on ' , alignment: 'center', margin: [0, 15, 0, 0], color: '#00B2AA'
+                  text: 'Printed on ' + this.date.toLocaleDateString(), alignment: 'center', margin: [0, 15, 0, 0], color: '#00B2AA'
                 },
         
                 {
