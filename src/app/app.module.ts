@@ -17,8 +17,7 @@ import { FingerPrintTestPage } from '../pages/finger-print-test/finger-print-tes
 import { TestApiPage } from '../pages/test-api/test-api';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuComponent } from './menu.component';
-import { LoginPage } from '../pages/authentication/login/login';
-import { SmsPage } from '../pages/authentication/sms/sms';
+import { LoginPage } from '../pages/login/login';
 import { AuthenticationProvider } from '../providers/authentication/authentication';
 import { IonicStepperModule } from 'ionic-stepper';
 
@@ -37,9 +36,8 @@ import { FingerprintAIO } from '@ionic-native/fingerprint-aio';
     FingerPrintTestPage,
     TestApiPage,
     LoginPage,
-    MenuComponent,
-    SmsPage
-  ],
+    MenuComponent
+    ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -59,7 +57,6 @@ import { FingerprintAIO } from '@ionic-native/fingerprint-aio';
     TestApiPage,
     LoginPage,
     MenuComponent,
-    SmsPage
   ],
   providers: [
     StatusBar,

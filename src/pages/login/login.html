@@ -1,0 +1,44 @@
+<ion-content padding>
+
+  <ion-card>
+
+    <ion-card-header>
+      Coop Mobile Banking
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-stepper #stepper [(selectedIndex)]="selectedIndex" [mode]="mode">
+        <ion-step label="Login" description="Subscriber Id">
+          <ion-item>
+            <ion-label floating>Subscriber ID</ion-label>
+            <ion-input name="login" (keydown)="onKeyDown($event)" (input)="form.login = $event.target.value" [value]='form.login'></ion-input>
+          </ion-item>
+          <div text-center>
+            <button *ngIf="finger" (click)="checkFinger()" type="button" ion-button color="light" small>Fingerprint</button>
+            <button id="btnstep1" [disabled]="!form.login" (click)="setSubscriberId()" type="button" ion-button small ionicStepperNext>Next</button>
+          </div>
+        </ion-step>
+        <ion-step label="Sms" description="sms code">
+          <ion-item>
+            <ion-label floating>Sms Input</ion-label>
+            <ion-input name="smsOtp" (keydown)="onKeyDown($event)" (input)='form.smsOtp = $event.target.value' [value]="form.smsOtp"
+              maxlength="6"></ion-input>
+          </ion-item>
+          <button type="button" ion-button color="light" small ionicStepperPrevious>Previous</button>
+          <button id="btnstep2" [disabled]="!form.smsOtp || !parseInt(form.smsOtp) || form.smsOtp.length < 6" (click)="setSMS()" type="button"
+            ion-button small ionicStepperNext float-right>Next</button>
+        </ion-step>
+        <ion-step label="Password" description="Your password">
+          <ion-item>
+            <ion-label floating>Password Input</ion-label>
+            <ion-input type="password" name="password" (keydown)="onKeyDown($event)" (input)='form.password = $event.target.value' [value]="form.password"></ion-input>
+          </ion-item>
+          <div text-center>
+            <button id="btnstep3" [disabled]="!form.password" type="button" (click)="setPassword()" ion-button small ionicStepperNext>Next</button>
+          </div>
+        </ion-step>
+      </ion-stepper>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
