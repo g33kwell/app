@@ -1,11 +1,8 @@
 page-home {
-    ion-card-header {
-        background-color: color($colors, primary);
-    }
     
     ion-col {
         padding: 5px;
-        border-bottom: 1px solid lightgray;
+        border-top: 1px solid lightgray;
     }
     
     ion-row {
@@ -24,31 +21,10 @@ page-home {
     
     .tableHead {
         color: color($colors, secondary);
-    }
-    
-    button[ion-fab] {
-        overflow: visible;
-        position: relative;
-    
-        ion-label {
-            position: absolute;
-            top: -8px;
-            right: 40px;
-    
-            color: white;
-            background-color: rgba(0,0,0,0.7);
-            line-height: 24px;
-            padding: 4px 8px;
-            border-radius: 4px;
+
+        ion-col {
+            border : 0;
         }
     }
     
-    .fab {
-        contain: layout;
-    }
-    
-    .loading-wrapper {
-        justify-content: center;
-        width: 100%;
-    }
 }

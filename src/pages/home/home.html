@@ -22,7 +22,7 @@
         <ion-card-content padding>
             <ion-grid>
                 <ion-row text-center class="tableHead">
-                    <ion-col col-5>Account</ion-col>
+                    <ion-col col-4 offset-1>Account</ion-col>
                     <ion-col col>Description</ion-col>
                     <ion-col col>Balance</ion-col>
                 </ion-row>
@@ -33,7 +33,7 @@
                     <ion-col col-4>{{subelement?.account}}</ion-col>
                     <ion-col col>{{subelement?.desc}}</ion-col>
                     <ion-col col>{{subelement?.balance}}</ion-col>
-                    <ion-col col-12 class="more" [hidden]="subelement?.hidden || selected.hidden">
+                    <ion-col col-12 class="more" *ngIf="!subelement?.hidden && !selected.hidden">
                             <ion-row>Current balance {{subelement?.balance}} </ion-row>
                             <ion-row>Incl. ovrdraft</ion-row>
                             <ion-row>Description {{subelement?.desc}}</ion-row>

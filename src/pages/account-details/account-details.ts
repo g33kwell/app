@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, FabContainer } from 'ionic-angular';
 
 import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
@@ -31,8 +31,11 @@ export class AccountDetailsPage {
 
   pdfObj = null;
 
-  @Input() selectedAccount = {};
   date = new Date();
+
+  @Input() selectedAccount;
+  @Input() selectedCategory;
+  
   data = [{
     'category': 'test1',
     'account': '085-7210867-0',
@@ -75,12 +78,15 @@ export class AccountDetailsPage {
     console.log('ionViewDidLoad AccountDetailsPage');
   }
 
-  onChange(element) {
+  onChange(fab?: FabContainer) {
     this.selected = false;
     this.selectedAccount = null;
     this.accounts.length = 0;
+    if (fab !== undefined) {
+      fab.close();
+    }
     for (let key of this.data) {
-      if (key.category == element)
+      if (key.category == this.selectedCategory)
         this.accounts.push(key);
     }
   }

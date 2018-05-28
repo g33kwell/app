@@ -18,62 +18,54 @@
   <ion-card>
     <ion-card-header color="light" style="display:flex;align-items:center;justify-content:space-between">
       Something in greek
-      <ion-icon id="print" [hidden]="!selected" (click)="genPdf()" name="print"></ion-icon>
+      <ion-icon id="print" *ngIf="selected" (click)="genPdf()" name="print"></ion-icon>
     </ion-card-header>
 
     <ion-card-content padding>
       <ion-list>
         <ion-item>
           <ion-label color="primary">Category</ion-label>
-          <ion-select [(ngModel)]="selectedCategory" (ionChange)="onChange(selectedCategory);" interface="popover">
+          <ion-select [(ngModel)]="selectedCategory" (ionChange)="onChange(fab);" interface="popover">
             <ion-option *ngFor="let element of category">{{element.category}}</ion-option>
           </ion-select>
         </ion-item>
         <ion-item>
           <ion-label color="primary">Account</ion-label>
-          <ion-select [disabled]="accounts.length == 0" (ionChange)="showPrint()" [(ngModel)]="selectedAccount" interface="popover">
+          <ion-select [disabled]="!accounts.length" (ionChange)="showPrint()" [(ngModel)]="selectedAccount" interface="popover">
             <ion-option *ngFor="let element of accounts" [value]="element">{{element.account}}</ion-option>
           </ion-select>
         </ion-item>
-        <hr>
         <ion-item>
           <ion-label color="primary" stacked>Description</ion-label>
-          <ion-input [readonly]="true" type="email" placeholder="Email Input" [value]="selectedAccount?.desc"></ion-input>
+          <ion-input [readonly]="true" [value]="selectedAccount?.desc"></ion-input>
         </ion-item>
-        <hr>
         <ion-item>
           <ion-label color="primary" stacked>Current balance</ion-label>
-          <ion-input [readonly]="true" type="email" placeholder="Email Input" [value]="selectedAccount?.current"></ion-input>
+          <ion-input [readonly]="true" [value]="selectedAccount?.current"></ion-input>
         </ion-item>
-        <hr>
         <ion-item>
           <ion-label color="primary" stacked>Available balance</ion-label>
-          <ion-input [readonly]="true" type="email" placeholder="Email Input" [value]="selectedAccount?.available"></ion-input>
+          <ion-input [readonly]="true" [value]="selectedAccount?.available"></ion-input>
         </ion-item>
-        <hr>
         <ion-item>
           <ion-label color="primary" stacked>Availaible amount as of {{date | date: 'dd/MM/yyyy'}}</ion-label>
-          <ion-input [readonly]="true" type="email" placeholder="Email Input" [value]="selectedAccount?.availableToday"></ion-input>
+          <ion-input [readonly]="true" [value]="selectedAccount?.availableToday"></ion-input>
         </ion-item>
-        <hr>
         <ion-item>
           <ion-label color="primary" stacked>Reserved funds</ion-label>
-          <ion-input [readonly]="true" type="email" placeholder="Email Input" [value]="selectedAccount?.reserved"></ion-input>
+          <ion-input [readonly]="true" [value]="selectedAccount?.reserved"></ion-input>
         </ion-item>
-        <hr>
         <ion-item>
           <ion-label color="primary" stacked>Uncleared cheques</ion-label>
-          <ion-input [readonly]="true" type="email" placeholder="Email Input" [value]="selectedAccount?.uncleared"></ion-input>
+          <ion-input [readonly]="true" [value]="selectedAccount?.uncleared"></ion-input>
         </ion-item>
-        <hr>
         <ion-item>
           <ion-label color="primary" stacked>Overdraft Limit</ion-label>
-          <ion-input [readonly]="true" type="email" placeholder="Email Input" [value]="selectedAccount?.overdraft"></ion-input>
+          <ion-input [readonly]="true" [value]="selectedAccount?.overdraft"></ion-input>
         </ion-item>
-        <hr>
         <ion-item class="lastItem">
           <ion-label color="primary" stacked>Maturity date of overdraft limit</ion-label>
-          <ion-input [readonly]="true" type="email" placeholder="Email Input" [value]="selectedAccount?.maturity"></ion-input>
+          <ion-input [readonly]="true" [value]="selectedAccount?.maturity"></ion-input>
         </ion-item>
       </ion-list>
     </ion-card-content>
@@ -82,14 +74,31 @@
 
 
   <ion-fab bottom right #fab>
-      <button ion-fab ><ion-icon name="apps"></ion-icon></button>
-      <ion-fab-list side="top">
-        
-        <button ion-fab color="secondary" ><ion-icon name="log-out"></ion-icon><ion-label>Card payment</ion-label></button>
-        <button ion-fab color="secondary" ><ion-icon name="log-out"></ion-icon><ion-label>SEPA transfers</ion-label></button>
-        <button ion-fab color="secondary" ><ion-icon name="cash"></ion-icon><ion-label>COOP transfers</ion-label></button>
-        <button ion-fab color="secondary" ><ion-icon name="contact"></ion-icon><ion-label>Transaction history</ion-label></button>
-        <button ion-fab color="secondary" ><ion-icon name="log-in"></ion-icon><ion-label>Account details</ion-label></button>
-      </ion-fab-list>
-    </ion-fab>
+    <button [disabled]="!selectedAccount" ion-fab>
+      <ion-icon name="apps"></ion-icon>
+    </button>
+    <ion-fab-list side="top">
+
+      <button ion-fab color="secondary">
+        <ion-icon name="log-out"></ion-icon>
+        <ion-label>Card payment</ion-label>
+      </button>
+      <button ion-fab color="secondary">
+        <ion-icon name="log-out"></ion-icon>
+        <ion-label>SEPA transfers</ion-label>
+      </button>
+      <button ion-fab color="secondary">
+        <ion-icon name="cash"></ion-icon>
+        <ion-label>COOP transfers</ion-label>
+      </button>
+      <button ion-fab color="secondary">
+        <ion-icon name="contact"></ion-icon>
+        <ion-label>Transaction history</ion-label>
+      </button>
+      <button ion-fab color="secondary">
+        <ion-icon name="log-in"></ion-icon>
+        <ion-label>Account details</ion-label>
+      </button>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>

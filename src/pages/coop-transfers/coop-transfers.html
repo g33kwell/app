@@ -1,0 +1,149 @@
+<ion-header>
+  <ion-navbar no-border-bottom color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="home"></ion-icon>
+      </button>
+      <button ion-button icon-only>
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header color="light">
+      COOP transfers
+    </ion-card-header>
+
+    <ion-card-content padding>
+      <ion-list>
+        <ion-item-group>
+          <ion-item-divider>Account to be debited</ion-item-divider>
+          <ion-item>
+            <ion-label color="primary">Category</ion-label>
+            <ion-select interface="popover">
+              <ion-option>Category1</ion-option>
+              <ion-option>Category2</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label color="primary">Account</ion-label>
+            <ion-select interface="popover">
+              <ion-option>Account1</ion-option>
+              <ion-option>Account2</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label color="primary">Description</ion-label>
+            <ion-input [readonly]="true"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label color="primary">Available balance</ion-label>
+            <ion-input [readonly]="true"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label color="primary">Incl. overdraft</ion-label>
+            <ion-input [readonly]="true"></ion-input>
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item-divider>Select transfer type</ion-item-divider>
+          <ion-item>
+            <ion-label color="primary">Category</ion-label>
+            <ion-select interface="popover">
+              <ion-option>Category1</ion-option>
+              <ion-option>Category2</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label color="primary">Account</ion-label>
+            <ion-select interface="popover">
+              <ion-option>Account1</ion-option>
+              <ion-option>Account2</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label color="primary">Current balance</ion-label>
+            <ion-input [readonly]="true"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label color="primary">Amount (Limit : 649,03 EUR)</ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Standing order</ion-label>
+            <ion-checkbox color="secondary" (ionChange)="standing()"></ion-checkbox>
+          </ion-item>
+          <ion-item *ngIf="!isStanding">
+            <ion-label color="primary">Execution date</ion-label>
+            <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
+          </ion-item>
+          <div *ngIf="isStanding" id="standing">
+            <ion-item>
+              <ion-label color="primary">Periodicity</ion-label>
+              <ion-select interface="popover">
+                <ion-option>Monthly</ion-option>
+                <ion-option>Yearly</ion-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label color="primary">First execution date</ion-label>
+              <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
+            </ion-item>
+            <ion-item>
+              <ion-label color="primary">Ending date
+                <span>*</span>
+              </ion-label>
+              <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
+            </ion-item>
+            <div id="notice">
+              <span>*</span> leave empty to execute forever
+            </div>
+          </div>
+        </ion-item-group>
+        <ion-item>
+            <ion-buttons start>
+                <button  ion-button color="light">cancel</button>
+                <button  ion-button color="primary">Confirm</button>
+            </ion-buttons>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+
+  </ion-card>
+
+
+  <ion-fab bottom right #fab>
+    <button [disabled]="!selectedAccount" ion-fab>
+      <ion-icon name="apps"></ion-icon>
+    </button>
+    <ion-fab-list side="top">
+
+      <button ion-fab color="secondary">
+        <ion-icon name="log-out"></ion-icon>
+        <ion-label>Card payment</ion-label>
+      </button>
+      <button ion-fab color="secondary">
+        <ion-icon name="log-out"></ion-icon>
+        <ion-label>SEPA transfers</ion-label>
+      </button>
+      <button ion-fab color="secondary">
+        <ion-icon name="cash"></ion-icon>
+        <ion-label>COOP transfers</ion-label>
+      </button>
+      <button ion-fab color="secondary">
+        <ion-icon name="contact"></ion-icon>
+        <ion-label>Transaction history</ion-label>
+      </button>
+      <button ion-fab color="secondary">
+        <ion-icon name="log-in"></ion-icon>
+        <ion-label>Account details</ion-label>
+      </button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,140 @@
+<ion-header>
+  <ion-navbar no-border-bottom color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="home"></ion-icon>
+      </button>
+      <button ion-button icon-only>
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header color="light" style="display:flex;align-items:center;justify-content:space-between">
+      {{header}}
+      <ion-icon *ngIf="isSearch" (click)="hideSearch(fab)" name="close-circle"></ion-icon>
+      <ion-icon *ngIf="!isSearch" name="stats"></ion-icon>
+    </ion-card-header>
+
+    <ion-card-content *ngIf="!isSearch" padding>
+      <ion-list>
+        <ion-item>
+          <ion-label color="primary">Category</ion-label>
+          <ion-select [(ngModel)]="selectedCategory" (ionChange)="onChange();" interface="popover">
+            <ion-option *ngFor="let element of categories">{{element.category}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label color="primary">Account</ion-label>
+          <ion-select [disabled]="accounts.length == 0" [(ngModel)]="selectedAccount" interface="popover">
+            <ion-option *ngFor="let element of accounts" [value]="element">{{element.account}}</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color="primary" stacked>Description</ion-label>
+          <ion-input [readonly]="true" [value]="selectedAccount?.desc"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color="primary" stacked>Current balance</ion-label>
+          <ion-input [readonly]="true" [value]="selectedAccount?.current"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color="primary" stacked>Available balance</ion-label>
+          <ion-input [readonly]="true" [value]="selectedAccount?.available"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color="primary" stacked>Incl. overdraft</ion-label>
+          <ion-input [readonly]="true" [value]="selectedAccount?.maturity"></ion-input>
+        </ion-item>
+
+        <ion-grid id="transactionGrid" *ngIf="selectedAccount != null">
+          <ion-row text-center class="tableHead">
+            <ion-col col-4 offset-1>Date</ion-col>
+            <ion-col col>Description</ion-col>
+            <ion-col col>Amount EUR</ion-col>
+          </ion-row>
+          <ion-row *ngFor="let item of selectedAccount?.transactions" (click)="send(item,fab)" text-center>
+            <ion-col col-1>
+              <ion-icon color="primary" name="add-circle"></ion-icon>
+            </ion-col>
+            <ion-col col-4>{{item.date}}</ion-col>
+            <ion-col col>{{item.desc}}</ion-col>
+            <ion-col col>
+              <span *ngIf="item.type == 'debit'">-</span>{{item.amount}}</ion-col>
+            <ion-col col-12 class="more" *ngIf="!item.hidden && !selected.hidden">
+              <ion-row>Current balance {{selectedAccount?.balance}} </ion-row>
+              <ion-row>Incl. ovrdraft</ion-row>
+              <ion-row>Description {{selectedAccount?.desc}}</ion-row>
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+
+      </ion-list>
+
+    </ion-card-content>
+
+    <ion-card-content *ngIf="isSearch" padding>
+      <ion-list>
+        <ion-item-group>
+          <ion-item-divider sticky>Search by record</ion-item-divider>
+          <ion-item>
+           <ion-label color="primary">Record</ion-label>
+           <ion-select [(ngModel)]="selectedRecord" interface="popover">
+              <ion-option *ngFor="let element of records">{{element.record}}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item-divider sticky>Search by date</ion-item-divider>
+          
+            <ion-grid id="dateGrid">
+              <ion-row padding>
+                <ion-col>
+                  <ion-label color="primary">From</ion-label>
+            <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="fromDate"></ion-datetime>
+                </ion-col>
+                <ion-col>
+                  <ion-label color="primary">To</ion-label>
+            <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="toDate"></ion-datetime>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item-divider sticky>Other criteria</ion-item-divider>
+          <ion-item>
+            <ion-select [(ngModel)]="selectedOperator" interface="popover">
+              <ion-option *ngFor="let element of operators">{{element.operator}}</ion-option>
+            </ion-select>
+            <ion-input></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label color="primary">Description</ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+        </ion-item-group>
+      </ion-list>
+      <ion-item >
+          <button small ion-button item-right (click)="search()" color="primary">Apply</button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab bottom right>
+    <button ion-fab (click)="showSearch()">
+      <ion-icon name="search"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>
