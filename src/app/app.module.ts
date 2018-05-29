@@ -24,7 +24,9 @@ import { IonicStepperModule } from 'ionic-stepper';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio';
-
+import { IonSimpleWizard } from '../pages/ion-simple-wizard/ion-simple-wizard.component';
+import { IonSimpleWizardStep } from '../pages/ion-simple-wizard/ion-simple-wizard.step.component';
+import { Keyboard } from '@ionic-native/keyboard';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { FingerprintAIO } from '@ionic-native/fingerprint-aio';
     FingerPrintTestPage,
     TestApiPage,
     LoginPage,
-    MenuComponent
+    MenuComponent,
+    IonSimpleWizard,
+    IonSimpleWizardStep,
     ],
   imports: [
     BrowserModule,
@@ -65,7 +69,8 @@ import { FingerprintAIO } from '@ionic-native/fingerprint-aio';
     File,
     FileOpener,
     AuthenticationProvider,
-    FingerprintAIO
+    FingerprintAIO,
+    Keyboard
   ]
 })
 export class AppModule {}
