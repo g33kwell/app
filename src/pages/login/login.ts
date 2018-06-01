@@ -10,6 +10,7 @@ import {
 } from "ionic-angular";
 
 import { FingerprintAIO } from "@ionic-native/fingerprint-aio";
+import { ScreenOrientation } from "@ionic-native/screen-orientation";
 /**
  * Generated class for the AuthenticationPage page.
  *
@@ -43,7 +44,8 @@ export class LoginPage {
     private faio: FingerprintAIO,
     private platform: Platform,
     public alertCtrl: AlertController,
-    public evts: Events
+    public evts: Events,
+    private screenOrientation: ScreenOrientation
   ) {
     /**
          * Step Wizard Settings
@@ -58,18 +60,21 @@ export class LoginPage {
           title: 'Login Input',
           name: 'login',
           label: 'Subsriber ID',
+          icon : 'contact',
           step: 1
         },
         {
           title: 'Sms input',
           name: 'smsOtp',
           label: 'Sms Code',
+          icon : 'mail',
           step: 2
         },
         {
           title: 'Password input',
           name: 'password',
           label: 'Password',
+          icon : 'lock',
           step: 3
         }
       ];
@@ -93,12 +98,15 @@ export class LoginPage {
   }
 
   ngOnInit() {
-    this.setupFingerPrint();
+    this.setupNative();
   }
 
-  async setupFingerPrint() {
+  async setupNative() {
     try {
-      await this.platform.ready();
+      await this.platform.ready().then( () => {
+        if(this.platform.is('cordova'))
+          this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT).then(() => console.log("locked"));
+      });
       (await this.faio.isAvailable())
         ? (this.finger = true)
         : (this.finger = false);

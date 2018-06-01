@@ -27,6 +27,8 @@ import { FingerprintAIO } from '@ionic-native/fingerprint-aio';
 import { IonSimpleWizard } from '../pages/ion-simple-wizard/ion-simple-wizard.component';
 import { IonSimpleWizardStep } from '../pages/ion-simple-wizard/ion-simple-wizard.step.component';
 import { Keyboard } from '@ionic-native/keyboard';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
+
 
 @NgModule({
   declarations: [
@@ -70,7 +72,8 @@ import { Keyboard } from '@ionic-native/keyboard';
     FileOpener,
     AuthenticationProvider,
     FingerprintAIO,
-    Keyboard
+    Keyboard,
+    ScreenOrientation 
   ]
 })
 export class AppModule {}

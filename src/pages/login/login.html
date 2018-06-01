@@ -1,26 +1,43 @@
 <ion-content padding>
-    <ion-simple-wizard [(step)]="currentStep" [showSteps]="true" [backBtnDisabled]="disabled" (finish)="onFinish()" [finishIcon]="'done-all'" [(stepCondition)]="stepCondition">
+
+  <ion-grid>
+    <ion-row>
+      <img src="assets/img/ccblogo.png" />
+    </ion-row>
+
+    <ion-row>
+      <ion-simple-wizard [(step)]="currentStep" [showSteps]="true" [backBtnDisabled]="disabled" (finish)="onFinish()" [finishIcon]="'done-all'"
+        [(stepCondition)]="stepCondition">
         <ion-wizard-step *ngFor="let step of stepsArray">
-            <ion-card *ngIf="currentStep==step.step">
-                <ion-card-header>
-                    {{step.title}}
-                </ion-card-header>
-                <ion-card-content>
-                    <ion-item>
-                        <ion-label floating>{{step.label}}</ion-label>
-                        <ion-input *ngIf="currentStep==1" [name]="step.name" [(ngModel)]="form.login" (input)="toggleCondition()"></ion-input>
-                        <ion-input *ngIf="currentStep==2" [name]="step.name" [(ngModel)]="form.smsOtp" (input)="toggleCondition()" maxlength="6"></ion-input>
-                        <ion-input *ngIf="currentStep==3" [name]="step.name" [(ngModel)]="form.password" (input)="toggleCondition()"></ion-input>
-                      </ion-item>
-                </ion-card-content>
-            </ion-card>
+          <ion-card *ngIf="currentStep==step.step">
+            <ion-card-header>
+              {{step.title}}
+            </ion-card-header>
+            <ion-card-content padding>
+              <ion-list>
+                  <ion-item>
+                      <ion-label>
+                          <ion-icon id="input-icon" [name]="step.icon"></ion-icon> 
+                      </ion-label>
+                      <ion-input *ngIf="currentStep==1" [placeholder]="step.label" [name]="step.name" [(ngModel)]="form.login" (input)="toggleCondition()"></ion-input>
+                      <ion-input *ngIf="currentStep==2" [placeholder]="step.label" [name]="step.name" [(ngModel)]="form.smsOtp" (input)="toggleCondition()" maxlength="6"></ion-input>
+                      <ion-input *ngIf="currentStep==3" [placeholder]="step.label" [name]="step.name" [(ngModel)]="form.password" (input)="toggleCondition()"></ion-input>
+                    </ion-item>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
         </ion-wizard-step>
+      </ion-simple-wizard>
+    </ion-row>
 
-    </ion-simple-wizard>
+    <ion-row></ion-row>
+  </ion-grid>
 
-    <div *ngIf="finger" id="icon">
-        <ion-icon name="finger-print" (click)="checkFinger()"></ion-icon>
-            <p>Touch the icon to use FingerPrint authentication </p>
-    </div>
+
+  <div *ngIf="currentstep == 1" id="icon">
+    <ion-icon id="finger-icon" name="finger-print" (click)="checkFinger()"></ion-icon>
+    <p>Tap the icon above to use FingerPrint authentication </p>
+  </div>
+
 
 </ion-content>
