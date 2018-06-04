@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Events } from 'ionic-angular';
+import { Events, LoadingController, AlertController } from 'ionic-angular';
 import { Keyboard } from '@ionic-native/keyboard';
 import { WizardAnimations } from './ion-simple-wizard-animations';
 
@@ -18,8 +18,15 @@ export class IonSimpleWizard {
   public hideWizard = false;//Default
   @Input() stepCondition = true;//Default
   @Input() backBtnDisabled = false;
+  @Input() form;
 
-  constructor(public evts: Events, private keyboard: Keyboard) {
+  //////////////////////////////////
+  smsOtp = "123456";
+  login = "144IICD1D"
+  //////////////////////////////////
+
+  constructor(public evts: Events, private keyboard: Keyboard, private loadingCtrl: LoadingController,
+    private alertCtrl: AlertController) {
   }
 
   ngOnInit() {
@@ -71,8 +78,42 @@ export class IonSimpleWizard {
    * @method next button event and emit  Event Called 'step:next'
    */
   next() {
-    this.stepChange.emit(this.step + 1);
-    this.evts.publish('step:next');
+    let loading = this.loadingCtrl.create({
+      content: "Please wait..."
+    });
+
+    loading.present();
+
+    setTimeout(() => {
+      if(this.step == 1){
+        if(this.login == this.form.login){
+          this.stepChange.emit(this.step + 1);
+          this.evts.publish('step:next');
+        }else{
+          this.form.login = ""
+          this.presentAlert("Login not found!")
+        }
+      }else if (this.step == 2) {
+        if(this.smsOtp == this.form.smsOtp){
+          this.stepChange.emit(this.step + 1);
+          this.evts.publish('step:next');
+        }else{
+          this.form.smsOtp = ""
+          this.presentAlert("Sms incorrect!")
+        }
+      }
+      loading.dismiss();
+    }, 1000);
+    
+  }
+
+  presentAlert(msg) {
+    let alert = this.alertCtrl.create({
+      title: 'Error',
+      subTitle: msg,
+      buttons: ['Dismiss']
+    });
+    alert.present();
   }
 
 }

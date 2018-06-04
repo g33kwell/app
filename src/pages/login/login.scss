@@ -1,7 +1,7 @@
 page-login {
 
   ion-content {
-    background: url('../../assets/img/back3.png') no-repeat center center fixed !important;
+    background: url('../../assets/img/back1.png') no-repeat center center fixed !important;
     -webkit-background-size: cover !important;
     -moz-background-size: cover !important;
     -o-background-size: cover !important;
@@ -17,7 +17,7 @@ page-login {
     background: rgba(255, 255, 255, 0.8) !important;
     ion-card-content {
       ion-item {
-        background: rgba(255, 255, 255, 0) !important;
+        background: rgba(255, 255, 255, 0) !important; 
         ion-label {
           color: #00B2AA !important;
         }
@@ -37,7 +37,7 @@ page-login {
   #icon {
     color: white;
     position: absolute;
-    bottom: 50px;
+    bottom: 65px;
     z-index: 100;
     width: 100%;
     text-align: center;

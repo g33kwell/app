@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import {
   IonicPage,
   NavController,
@@ -11,6 +11,7 @@ import {
 
 import { FingerprintAIO } from "@ionic-native/fingerprint-aio";
 import { ScreenOrientation } from "@ionic-native/screen-orientation";
+import { IonSimpleWizard } from "../ion-simple-wizard/ion-simple-wizard.component";
 /**
  * Generated class for the AuthenticationPage page.
  *
@@ -27,7 +28,8 @@ export class LoginPage {
   finger = false;
   isFirstStep = true;
   form: IArcotV6Form = <IArcotV6Form>{};
-
+  password ="azerty.123";
+  @ViewChild('wizard') wizard:IonSimpleWizard;
   //////////////////////////////////
   disabled: boolean = false;
   step: any;
@@ -88,8 +90,8 @@ export class LoginPage {
     });
     this.evts.subscribe('step:next', () => {
       //Do something if next
-      if (this.currentStep == 2) this.setSubscriberId();
-      else if (this.currentStep == 3) this.setSMS();
+     if (this.currentStep == 2) this.setSubscriberId();
+     else if (this.currentStep == 3) this.setSMS();
     });
     this.evts.subscribe('step:back', () => {
       //Do something if back
@@ -115,44 +117,19 @@ export class LoginPage {
     }
   }
 
-  /*onKeyDown(e) {
+  onKeyDown(e) {
     if (e.key === "Enter") {
-      if (e.target.name === "login") {
-        let element = document.getElementById('btnstep1');
-        element.click()
-      } else if (e.target.name === "smsOtp") {
-        let element = document.getElementById('btnstep2');
-        element.click()
-      } else if (e.target.name === "password") {
-        let element = document.getElementById('btnstep3');
-        element.click()
-      }
+      if(this.currentStep == 3) this.setPassword()
+      else this.wizard.next()
     }
-  }*/
+  }
 
   setSubscriberId() {
-    let loading = this.loadingCtrl.create({
-      content: "Please wait..."
-    });
-
-    loading.present();
-
-    setTimeout(() => {
-      loading.dismiss();
-    }, 500);
+    
   }
 
   setSMS() {
     this.disabled = true;
-    let loading = this.loadingCtrl.create({
-      content: "Please wait..."
-    });
-
-    loading.present();
-
-    setTimeout(() => {
-      loading.dismiss();
-    }, 500);
   }
 
   setPassword() {
@@ -161,10 +138,17 @@ export class LoginPage {
     });
 
     loading.present();
-
-    setTimeout(() => {
-      loading.dismiss().then(res => this.navCtrl.pop());
-    }, 500);
+    if (this.password == this.form.password) {
+      setTimeout(() => {
+        loading.dismiss().then(res => this.navCtrl.pop());
+      }, 5000);
+    }else {
+      setTimeout(() => {
+        this.form.password = ""
+        loading.dismiss().then(res => this.presentAlert("Password inorrect!"));
+      }, 1000);
+    }
+    
   }
 
   checkFinger() {
@@ -185,7 +169,7 @@ export class LoginPage {
 
         setTimeout(() => {
           loading.dismiss().then(res => this.navCtrl.pop());
-        }, 500);
+        }, 3000);
       })
       .catch((error: any) => console.log(error));
   }
@@ -198,6 +182,15 @@ export class LoginPage {
     if(this.currentStep == 1) this.stepCondition = (this.form.login != "" && this.form.login != null)
     else if(this.currentStep == 2) this.stepCondition = (this.form.smsOtp != "" && this.form.smsOtp != null && this.form.smsOtp.length == 6 && Number(this.form.smsOtp))
     else if(this.currentStep == 3) this.stepCondition = (this.form.password != "" && this.form.password != null)
+  }
+
+  presentAlert(msg) {
+    let alert = this.alertCtrl.create({
+      title: 'Error',
+      subTitle: msg,
+      buttons: ['Dismiss']
+    });
+    alert.present();
   }
 
 }
