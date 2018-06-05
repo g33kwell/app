@@ -6,8 +6,8 @@
     </ion-row>
 
     <ion-row>
-      <ion-simple-wizard #wizard [(step)]="currentStep" [showSteps]="true" [backBtnDisabled]="disabled" [form]="form" (finish)="onFinish()" [finishIcon]="'done-all'"
-        [(stepCondition)]="stepCondition">
+      <ion-simple-wizard #wizard [(step)]="currentStep" [showSteps]="true" [backBtnDisabled]="disabled" [form]="form" (finish)="onFinish()"
+        [finishIcon]="'done-all'" [(stepCondition)]="stepCondition">
         <ion-wizard-step *ngFor="let step of stepsArray">
           <ion-card *ngIf="currentStep==step.step">
             <ion-card-header>
@@ -18,10 +18,12 @@
                 <ion-label>
                   <ion-icon id="input-icon" [name]="step.icon"></ion-icon>
                 </ion-label>
-                <ion-input (keydown)="onKeyDown($event)" *ngIf="currentStep==1" [placeholder]="step.label" [name]="step.name" [(ngModel)]="form.login" (input)="toggleCondition()"></ion-input>
-                <ion-input (keydown)="onKeyDown($event)" *ngIf="currentStep==2" [placeholder]="step.label" [name]="step.name" [(ngModel)]="form.smsOtp" (input)="toggleCondition()"
-                  maxlength="6"></ion-input>
-                <ion-input (keydown)="onKeyDown($event)" *ngIf="currentStep==3" type="password" [placeholder]="step.label" [name]="step.name" [(ngModel)]="form.password" (input)="toggleCondition()"></ion-input>
+                <ion-input (keydown)="onKeyDown($event)" *ngIf="currentStep==1" [placeholder]="step.label" [name]="step.name" [(ngModel)]="form.login"
+                  (input)="toggleCondition()"></ion-input>
+                <ion-input (keydown)="onKeyDown($event)" *ngIf="currentStep==2" [placeholder]="step.label" [name]="step.name" [(ngModel)]="form.smsOtp"
+                  (input)="toggleCondition()" maxlength="6"></ion-input>
+                <ion-input (keydown)="onKeyDown($event)" *ngIf="currentStep==3" type="password" [placeholder]="step.label" [name]="step.name"
+                  [(ngModel)]="form.password" (input)="toggleCondition()"></ion-input>
               </ion-item>
               <ion-item *ngIf="currentStep==2" text-right>
                 <p style="text-decoration: underline;">Didn't receive the code?</p>
@@ -36,7 +38,7 @@
   </ion-grid>
 
 
-  <div *ngIf="finger && currentStep == 1" id="icon">
+  <div *ngIf="finger && currentStep == 1 && !hideFinger" id="icon">
     <ion-icon id="finger-icon" name="finger-print" (click)="checkFinger()"></ion-icon>
     <p>Tap the icon above to use FingerPrint authentication </p>
   </div>
