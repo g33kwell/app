@@ -16,7 +16,7 @@ import { CoopTransfersPage } from '../pages/coop-transfers/coop-transfers';
 import { FingerPrintTestPage } from '../pages/finger-print-test/finger-print-test';
 import { TestApiPage } from '../pages/test-api/test-api';
 import { HttpClientModule } from '@angular/common/http';
-import { MenuComponent } from './menu.component';
+//import { MenuComponent } from './menu.component';
 import { LoginPage } from '../pages/login/login';
 import { AuthenticationProvider } from '../providers/authentication/authentication';
 import { IonicStepperModule } from 'ionic-stepper';
@@ -40,7 +40,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
     FingerPrintTestPage,
     TestApiPage,
     LoginPage,
-    MenuComponent,
+    //MenuComponent,
     IonSimpleWizard,
     IonSimpleWizardStep,
     ],
@@ -62,7 +62,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
     FingerPrintTestPage,
     TestApiPage,
     LoginPage,
-    MenuComponent,
+    //MenuComponent,
   ],
   providers: [
     StatusBar,

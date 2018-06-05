@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
-import { NavController, LoadingController, FabContainer } from "ionic-angular";
+import { NavController, LoadingController, FabContainer, MenuController, App } from "ionic-angular";
+import { LoginPage } from "../login/login";
 
 @Component({
   selector: "page-home",
@@ -44,7 +45,7 @@ export class HomePage {
     'hidden' : true
   };
 
-  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, private menuController: MenuController, private app: App) {
   }
 
   ngAfterViewInit() {
@@ -55,6 +56,14 @@ export class HomePage {
 
     loading.present();*/
       
+  }
+
+  logout(){
+    this.app.getRootNav().setRoot(LoginPage)
+  }
+
+  ionViewWillEnter() {
+    this.menuController.enable(true, 'myMenu');
   }
 
   send(element, fab?: FabContainer){

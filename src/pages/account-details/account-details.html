@@ -23,7 +23,7 @@
 
     <ion-card-content padding>
       <ion-list>
-        <ion-item>
+        <!--<ion-item>
           <ion-label color="primary">Category</ion-label>
           <ion-select [(ngModel)]="selectedCategory" (ionChange)="onChange(fab);" interface="popover">
             <ion-option *ngFor="let element of category">{{element.category}}</ion-option>
@@ -35,7 +35,14 @@
             <ion-option *ngFor="let element of accounts" [value]="element">{{element.account}}</ion-option>
           </ion-select>
         </ion-item>
+        <ion-item>-->
         <ion-item>
+            <ion-label color="primary">Account</ion-label>
+            <ion-select (ionChange)="showPrint()" [(ngModel)]="selectedAccount" interface="popover">
+              <ion-option *ngFor="let element of accounts" [value]="element">{{element.account}}</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
           <ion-label color="primary" stacked>Description</ion-label>
           <ion-input [readonly]="true" [value]="selectedAccount?.desc"></ion-input>
         </ion-item>
@@ -78,11 +85,6 @@
       <ion-icon name="apps"></ion-icon>
     </button>
     <ion-fab-list side="top">
-
-      <button ion-fab color="secondary">
-        <ion-icon name="log-out"></ion-icon>
-        <ion-label>Card payment</ion-label>
-      </button>
       <button ion-fab color="secondary">
         <ion-icon name="log-out"></ion-icon>
         <ion-label>SEPA transfers</ion-label>

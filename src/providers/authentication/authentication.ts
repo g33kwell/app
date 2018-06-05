@@ -24,8 +24,8 @@ export class AuthenticationProvider {
     this.isLoggedIn = false;
   }
 
-  get isloggedIn() {
-    return this.isLoggedIn
+  authenticated() : boolean {
+    return this.isLoggedIn;
   }
 
 }

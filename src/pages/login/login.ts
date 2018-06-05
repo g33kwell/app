@@ -1,4 +1,4 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, ViewChild, Output, EventEmitter } from "@angular/core";
 import {
   IonicPage,
   NavController,
@@ -6,12 +6,15 @@ import {
   LoadingController,
   Platform,
   AlertController,
-  Events
+  Events,
+  App,
+  MenuController
 } from "ionic-angular";
 
 import { FingerprintAIO } from "@ionic-native/fingerprint-aio";
 import { ScreenOrientation } from "@ionic-native/screen-orientation";
 import { IonSimpleWizard } from "../ion-simple-wizard/ion-simple-wizard.component";
+import { HomePage } from "../home/home";
 /**
  * Generated class for the AuthenticationPage page.
  *
@@ -30,6 +33,7 @@ export class LoginPage {
   form: IArcotV6Form = <IArcotV6Form>{};
   password ="azerty.123";
   @ViewChild('wizard') wizard:IonSimpleWizard;
+  @Output() loggedIn = new EventEmitter();
   //////////////////////////////////
   disabled: boolean = false;
   step: any;
@@ -39,6 +43,10 @@ export class LoginPage {
   stepsArray: Array<Object> = [];
   //////////////////////////////////
 
+  ionViewWillEnter() {
+    this.menuController.enable(false, 'myMenu');
+  }
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -47,8 +55,16 @@ export class LoginPage {
     private platform: Platform,
     public alertCtrl: AlertController,
     public evts: Events,
-    private screenOrientation: ScreenOrientation
+    private screenOrientation: ScreenOrientation,
+    private app: App,
+    private menuController: MenuController
   ) {
+    
+    this.platform.ready().then( () => {
+        if(this.platform.is('cordova'))
+          this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT).then(() => console.log("locked"));
+        this.faio.isAvailable() ? (this.finger = true) : (this.finger = false);
+    });
     /**
          * Step Wizard Settings
          */
@@ -99,24 +115,6 @@ export class LoginPage {
     });
   }
 
-  ngOnInit() {
-    this.setupNative();
-  }
-
-  async setupNative() {
-    try {
-      await this.platform.ready().then( () => {
-        if(this.platform.is('cordova'))
-          this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT).then(() => console.log("locked"));
-      });
-      (await this.faio.isAvailable())
-        ? (this.finger = true)
-        : (this.finger = false);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
   onKeyDown(e) {
     if (e.key === "Enter") {
       if(this.currentStep == 3) this.setPassword()
@@ -140,8 +138,8 @@ export class LoginPage {
     loading.present();
     if (this.password == this.form.password) {
       setTimeout(() => {
-        loading.dismiss().then(res => this.navCtrl.pop());
-      }, 5000);
+        loading.dismiss().then(res => this.app.getRootNav().setRoot(HomePage));
+      }, 1000);
     }else {
       setTimeout(() => {
         this.form.password = ""

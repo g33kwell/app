@@ -26,10 +26,9 @@ export class AccountTransactionHistoryPage {
   @Input() fromDate;
   @Input() toDate;
 
-  accounts = [];
   items = [];
 
-  data = [
+  accounts = [
     {
       'category': 'test1',
       'account': '085-7210867-0',
@@ -141,14 +140,14 @@ export class AccountTransactionHistoryPage {
     this.header = "Account history transaction";
   }
 
-  onChange() {
+  /*onChange() {
     this.selectedAccount = null;
     this.accounts.length = 0;
     for (let key of this.data) {
       if (key.category == this.selectedCategory)
         this.accounts.push(key);
     }
-  }
+  }*/
 
   send(element) {
     if (element.hidden) {

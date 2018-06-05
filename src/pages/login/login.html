@@ -23,6 +23,9 @@
                   maxlength="6"></ion-input>
                 <ion-input (keydown)="onKeyDown($event)" *ngIf="currentStep==3" type="password" [placeholder]="step.label" [name]="step.name" [(ngModel)]="form.password" (input)="toggleCondition()"></ion-input>
               </ion-item>
+              <ion-item *ngIf="currentStep==2" text-right>
+                <p style="text-decoration: underline;">Didn't receive the code?</p>
+              </ion-item>
             </ion-card-content>
           </ion-card>
         </ion-wizard-step>

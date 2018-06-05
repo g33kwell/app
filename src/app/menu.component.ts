@@ -1,10 +1,11 @@
-import { Component, ViewChild } from '@angular/core';
+/*import { Component, ViewChild } from '@angular/core';
 import { Nav } from 'ionic-angular';
 
 import { HomePage } from '../pages/home/home';
 import { AccountDetailsPage } from '../pages/account-details/account-details';
 import { AccountTransactionHistoryPage } from '../pages/account-transaction-history/account-transaction-history';
 import { CoopTransfersPage } from '../pages/coop-transfers/coop-transfers';
+import { LoginPage } from '../pages/login/login';
 
 @Component({
   templateUrl: 'menu.html'
@@ -32,7 +33,7 @@ export class MenuComponent {
 
 
   @ViewChild(Nav) nav: Nav
-  rootPage: any = HomePage;
+  rootPage: any = LoginPage;
 
   constructor() {}
 
@@ -46,5 +47,5 @@ export class MenuComponent {
     }
     return;
   }
-}
+}*/
 

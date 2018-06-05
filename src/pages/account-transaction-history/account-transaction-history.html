@@ -24,7 +24,7 @@
 
     <ion-card-content *ngIf="!isSearch" padding>
       <ion-list>
-        <ion-item>
+        <!--<ion-item>
           <ion-label color="primary">Category</ion-label>
           <ion-select [(ngModel)]="selectedCategory" (ionChange)="onChange();" interface="popover">
             <ion-option *ngFor="let element of categories">{{element.category}}</ion-option>
@@ -33,6 +33,13 @@
         <ion-item>
           <ion-label color="primary">Account</ion-label>
           <ion-select [disabled]="accounts.length == 0" [(ngModel)]="selectedAccount" interface="popover">
+            <ion-option *ngFor="let element of accounts" [value]="element">{{element.account}}</ion-option>
+          </ion-select>
+        </ion-item>-->
+
+        <ion-item>
+          <ion-label color="primary">Account</ion-label>
+          <ion-select [(ngModel)]="selectedAccount" interface="popover">
             <ion-option *ngFor="let element of accounts" [value]="element">{{element.account}}</ion-option>
           </ion-select>
         </ion-item>

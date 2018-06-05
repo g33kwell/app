@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, FabContainer } from 'ionic-angular';
 
 import { File } from '@ionic-native/file';
@@ -23,20 +23,15 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 })
 export class AccountDetailsPage {
 
-  letterObj = {
-    to: '',
-    from: '',
-    text: ''
-  }
+  
 
   pdfObj = null;
 
   date = new Date();
 
-  @Input() selectedAccount;
-  @Input() selectedCategory;
+  selectedAccount;
   
-  data = [{
+  accounts = [{
     'category': 'test1',
     'account': '085-7210867-0',
     'desc': 'desc1',
@@ -60,13 +55,6 @@ export class AccountDetailsPage {
     'maturity': 'maturity2'
   }]
 
-  accounts = [];
-
-  category = [{
-    'category': 'test1'
-  }, {
-    'category': 'test2'
-  }];
 
   selected = false;
 
@@ -84,10 +72,6 @@ export class AccountDetailsPage {
     this.accounts.length = 0;
     if (fab !== undefined) {
       fab.close();
-    }
-    for (let key of this.data) {
-      if (key.category == this.selectedCategory)
-        this.accounts.push(key);
     }
   }
 
