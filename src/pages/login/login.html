@@ -34,14 +34,12 @@
       </ion-simple-wizard>
     </ion-row>
 
-    <ion-row></ion-row>
+    <ion-row>
+      <div *ngIf="finger && currentStep == 1 && !hideFinger" id="icon">
+        <ion-icon id="finger-icon" name="finger-print" (click)="checkFinger()"></ion-icon>
+        <p>Tap the icon above to use FingerPrint authentication </p>
+      </div>
+    </ion-row>
   </ion-grid>
-
-
-  <div *ngIf="finger && currentStep == 1 && !hideFinger" id="icon">
-    <ion-icon id="finger-icon" name="finger-print" (click)="checkFinger()"></ion-icon>
-    <p>Tap the icon above to use FingerPrint authentication </p>
-  </div>
-
 
 </ion-content>

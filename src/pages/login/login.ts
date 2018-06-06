@@ -70,11 +70,11 @@ export class LoginPage {
     this.menuController.enable(false, "myMenu");
 
     this.platform.ready().then(() => {
+      this.faio.isAvailable().then(() => this.finger = true)
+                            .catch( () => this.finger = false)
       if (this.platform.is("cordova"))
         this.screenOrientation
           .lock(this.screenOrientation.ORIENTATIONS.PORTRAIT)
-          .then(() => console.log("locked"));
-      this.faio.isAvailable() ? (this.finger = true) : (this.finger = false);
     });
     /**
      * Step Wizard Settings

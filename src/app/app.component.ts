@@ -36,7 +36,8 @@ export class MyApp {
       'elements': [
         { title: 'Utility Payments', name: 'CoopTransfersPage', component: CoopTransfersPage, icon: 'calendar' },
         { title: 'Cheque Inquiry', name: 'SepaTransfersPage', component: null, icon: 'contacts' },
-        { title: 'Order Chequebook', name: 'StandingOrdersPage', component: null, icon: 'cash' }
+        { title: 'Order Chequebook', name: 'StandingOrdersPage', component: null, icon: 'cash' },
+        { title: 'Setup Fingerprint', name: 'StandingOrdersPage', component: null, icon: 'finger-print' }
       ]
     }
   ];

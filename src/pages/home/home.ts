@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
-import { NavController, LoadingController, FabContainer, MenuController, App } from "ionic-angular";
+import { NavController, LoadingController, FabContainer, MenuController, App, Platform } from "ionic-angular";
 import { LoginPage } from "../login/login";
+import { ScreenOrientation } from "@ionic-native/screen-orientation";
 
 @Component({
   selector: "page-home",
@@ -45,7 +46,12 @@ export class HomePage {
     'hidden' : true
   };
 
-  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, private menuController: MenuController, private app: App) {
+  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, private menuController: MenuController,
+     private app: App, private platform: Platform, private screenOrientation:ScreenOrientation) {
+    this.platform.ready().then(() => {
+      if (this.platform.is("cordova"))
+        this.screenOrientation.unlock()
+    });
   }
 
   ngAfterViewInit() {
