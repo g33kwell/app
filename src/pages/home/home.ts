@@ -9,35 +9,39 @@ import { ScreenOrientation } from "@ionic-native/screen-orientation";
 })
 export class HomePage {
 
-  data = [
+  data = 
     [{
       'account' : '0-857210867-0 EUR',
       'desc' : 'Description',
       'balance' : '9276864387',
-      'hidden' : true
+      'hidden' : true,
+      'type' : 'self'
     },{
       'account' : '0-857210867-0 EUR',
       'desc' : 'Description',
       'balance' : '9276864387',
-      'hidden' : true
-    }],
-    [{
+      'hidden' : true,
+      'type' : 'self'
+    },
+    {
       'account' : '0-857210867-0 EUR',
       'desc' : 'Description',
       'balance' : '9276864387',
-      'hidden' : true
+      'hidden' : true,
+      'type' : 'join'
     },{
       'account' : '0-857210867-0 EUR',
       'desc' : 'Description',
       'balance' : '9276864387',
-      'hidden' : true
+      'hidden' : true,
+      'type' : 'join'
     },{
       'account' : '0-857210867-0 EUR',
       'desc' : 'Description',
       'balance' : '9276864387',
-      'hidden' : true
-    }]
-  ];
+      'hidden' : true,
+      'type' : 'join'
+    }];
 
   selected: any = {
     'account' : '',
@@ -85,5 +89,9 @@ export class HomePage {
         fab.close();
       }
     }
+  }
+
+  filterItemsOfType(type) {
+    return this.data.filter(x => x.type == type);
   }
 }
