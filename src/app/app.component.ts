@@ -20,14 +20,14 @@ export class MyApp {
       'elements': [
         { title: 'My accounts', name: 'HomePage', component: HomePage, icon: 'calendar' },
         { title: 'Account details', name: 'AccountDetailsPage', component: AccountDetailsPage, icon: 'contacts' },
-        { title: 'Account transaction history', name: 'AccountTransactionHistoryPage', component: AccountTransactionHistoryPage, icon: 'cash' }
+        { title: 'Account transaction history', name: 'AccountTransactionHistoryPage', component: AccountTransactionHistoryPage, icon: 'archive' }
       ]
     },
     {
       'group': 'Transfers',
       'elements': [
-        { title: 'COOP transfers', name: 'CoopTransfersPage', component: CoopTransfersPage, icon: 'calendar' },
-        { title: 'SEPA transfers', name: 'SepaTransfersPage', component: null, icon: 'contacts' },
+        { title: 'COOP transfers', name: 'CoopTransfersPage', component: CoopTransfersPage, icon: 'cash' },
+        { title: 'SEPA transfers', name: 'SepaTransfersPage', component: null, icon: 'cash' },
         { title: 'Standing orders', name: 'StandingOrdersPage', component: null, icon: 'cash' }
       ]
     },
@@ -44,7 +44,7 @@ export class MyApp {
 
 
   @ViewChild(Nav) nav: Nav
-  rootPage: any = LoginPage;
+  rootPage: any = HomePage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
@@ -54,7 +54,7 @@ export class MyApp {
       statusBar.overlaysWebView(true);
 
       // set status bar to white
-      statusBar.backgroundColorByHexString('#00B2AA');
+      statusBar.backgroundColorByHexString('#008983');
       //statusBar.styleDefault();
       splashScreen.hide();
     });

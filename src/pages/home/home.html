@@ -28,7 +28,7 @@
                 </ion-row>
                 <ion-row *ngFor="let element of filterItemsOfType('self')"  (click)="send(element,fab)" text-center>
                     <ion-col col-1>
-                        <ion-icon color="primary" name="add-circle"></ion-icon>
+                        <ion-icon color="primary" [name]="element?.circle"></ion-icon>
                     </ion-col>
                     <ion-col col-4>{{element?.account}}</ion-col>
                     <ion-col col>{{element?.desc}}</ion-col>
@@ -72,9 +72,9 @@
         </ion-card-content>
     </ion-card>
     <ion-fab bottom right #fab>
-        <button ion-fab [disabled]="selected.hidden"><ion-icon name="apps"></ion-icon></button>
+        <button ion-fab [disabled]="selected.hidden"><ion-icon name="flame"></ion-icon></button>
         <ion-fab-list side="top">
-          <button ion-fab color="secondary" ><ion-icon name="log-out"></ion-icon><ion-label>SEPA transfers</ion-label></button>
+          <button ion-fab color="secondary" ><ion-icon name="cash"></ion-icon><ion-label>SEPA transfers</ion-label></button>
           <button ion-fab color="secondary" ><ion-icon name="cash"></ion-icon><ion-label>COOP transfers</ion-label></button>
           <button ion-fab color="secondary" ><ion-icon name="contact"></ion-icon><ion-label>Transaction history</ion-label></button>
           <button ion-fab color="secondary" ><ion-icon name="log-in"></ion-icon><ion-label>Account details</ion-label></button>

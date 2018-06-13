@@ -15,39 +15,45 @@ export class HomePage {
       'desc' : 'Description',
       'balance' : '9276864387',
       'hidden' : true,
-      'type' : 'self'
+      'type' : 'self',
+      'circle' : "add-circle"
     },{
       'account' : '0-857210867-0 EUR',
       'desc' : 'Description',
       'balance' : '9276864387',
       'hidden' : true,
-      'type' : 'self'
+      'type' : 'self',
+      'circle' : "add-circle"
     },
     {
       'account' : '0-857210867-0 EUR',
       'desc' : 'Description',
       'balance' : '9276864387',
       'hidden' : true,
-      'type' : 'join'
+      'type' : 'join',
+      'circle' : "add-circle"
     },{
       'account' : '0-857210867-0 EUR',
       'desc' : 'Description',
       'balance' : '9276864387',
       'hidden' : true,
-      'type' : 'join'
+      'type' : 'join',
+      'circle' : "add-circle"
     },{
       'account' : '0-857210867-0 EUR',
       'desc' : 'Description',
       'balance' : '9276864387',
       'hidden' : true,
-      'type' : 'join'
+      'type' : 'join',
+      'circle' : "add-circle"
     }];
 
   selected: any = {
     'account' : '',
     'desc' : '',
     'balance' : '',
-    'hidden' : true
+    'hidden' : true,
+    'circle' : "add-circle"
   };
 
   constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, private menuController: MenuController,
@@ -78,11 +84,13 @@ export class HomePage {
 
   send(element, fab?: FabContainer){
     if(element.hidden){
+      element.circle = "remove-circle"
       this.selected.hidden = true;
       element.hidden = false;
       this.selected = element;
     }
     else{
+      element.circle = "add-circle"
       element.hidden = true;
       this.selected = element;
       if (fab !== undefined) {

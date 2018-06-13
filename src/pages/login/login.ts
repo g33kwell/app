@@ -8,14 +8,14 @@ import {
   AlertController,
   Events,
   App,
-  MenuController
+  MenuController,
+  Keyboard
 } from "ionic-angular";
 
 import { FingerprintAIO } from "@ionic-native/fingerprint-aio";
 import { ScreenOrientation } from "@ionic-native/screen-orientation";
 import { IonSimpleWizard } from "../ion-simple-wizard/ion-simple-wizard.component";
 import { HomePage } from "../home/home";
-import { Keyboard } from "@ionic-native/keyboard";
 /**
  * Generated class for the AuthenticationPage page.
  *
@@ -36,6 +36,10 @@ export class LoginPage {
   password = "azerty.123";
   @ViewChild("wizard") wizard: IonSimpleWizard;
   @Output() loggedIn = new EventEmitter();
+
+  type = 'password';
+  showPass = false;
+
   //////////////////////////////////
   disabled: boolean = false;
   step: any;
@@ -45,13 +49,26 @@ export class LoginPage {
   stepsArray: Array<Object> = [];
   //////////////////////////////////
 
-  ngOnInit() {
-    this.keyboard.onKeyboardShow().subscribe(() => {
+  showPassword() {
+    this.showPass = !this.showPass;
+ 
+    if(this.showPass){
+      this.type = 'text';
+    } else {
+      this.type = 'password';
+    }
+  }
+
+  keyboardCheck() {
+    if (this.keyboard.isOpen()) {
       this.hideFinger = true;
-    });
-    this.keyboard.onKeyboardHide().subscribe(() => {
+    }else {
       this.hideFinger = false;
-    });
+    }
+  }
+
+  ngOnInit() {
+     
   }
 
   constructor(
@@ -127,8 +144,9 @@ export class LoginPage {
 
   onKeyDown(e) {
     if (e.key === "Enter") {
-      if (this.currentStep == 3) this.setPassword();
-      else this.wizard.next();
+      if(this.currentStep == 1 && this.form.login != "" && this.form.login != null) this.wizard.next();
+      else if(this.currentStep == 2 && this.form.smsOtp != "" && this.form.smsOtp != null && this.form.smsOtp.length == 6 && Number(this.form.smsOtp)) this.wizard.next();
+      else if (this.currentStep == 3 && this.form.password != "" && this.form.password != null) this.setPassword();
     }
   }
 
@@ -151,7 +169,7 @@ export class LoginPage {
     } else {
       setTimeout(() => {
         this.form.password = "";
-        loading.dismiss().then(res => this.presentAlert("Password inorrect!"));
+        loading.dismiss().then(res => this.presentAlert("Password incorrect!"));
       }, 1000);
     }
   }
@@ -195,11 +213,12 @@ export class LoginPage {
         this.form.smsOtp.length == 6 &&
         Number(this.form.smsOtp);
     else if (this.currentStep == 3)
-      this.stepCondition =
+      this.stepCondition =  
         this.form.password != "" && this.form.password != null;
   }
 
   presentAlert(msg) {
+    this.toggleCondition()
     let alert = this.alertCtrl.create({
       title: "Error",
       subTitle: msg,

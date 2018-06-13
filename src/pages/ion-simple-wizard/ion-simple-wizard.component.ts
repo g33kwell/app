@@ -14,6 +14,7 @@ export class IonSimpleWizard {
   @Input() step = 1;//Default
   @Output() finish = new EventEmitter();
   @Output() stepChange = new EventEmitter();
+  @Output() alertFunc = new EventEmitter<string>();
   public steps = 0;//Innitial
   public hideWizard = false;//Default
   @Input() stepCondition = true;//Default
@@ -91,7 +92,7 @@ export class IonSimpleWizard {
           this.evts.publish('step:next');
         }else{
           this.form.login = ""
-          this.presentAlert("Login not found!")
+          this.alertFunc.emit('Login not found!');
         }
       }else if (this.step == 2) {
         if(this.smsOtp == this.form.smsOtp){
@@ -99,21 +100,11 @@ export class IonSimpleWizard {
           this.evts.publish('step:next');
         }else{
           this.form.smsOtp = ""
-          this.presentAlert("Sms incorrect!")
+          this.alertFunc.emit('Sms incorrect!');
         }
       }
       loading.dismiss();
     }, 1000);
     
   }
-
-  presentAlert(msg) {
-    let alert = this.alertCtrl.create({
-      title: 'Error',
-      subTitle: msg,
-      buttons: ['Dismiss']
-    });
-    alert.present();
-  }
-
 }
