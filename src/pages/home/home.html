@@ -27,13 +27,13 @@
                     <ion-col col>Balance</ion-col>
                 </ion-row>
                 <ion-row *ngFor="let element of filterItemsOfType('self')"  (click)="send(element,fab)" text-center>
-                    <ion-col col-1>
+                    <ion-col [ngStyle]="{'background-color':element.background}" col-1>
                         <ion-icon color="primary" [name]="element?.circle"></ion-icon>
                     </ion-col>
-                    <ion-col col-4>{{element?.account}}</ion-col>
-                    <ion-col col>{{element?.desc}}</ion-col>
-                    <ion-col col>{{element?.balance}}</ion-col>
-                    <ion-col col-12 class="more" *ngIf="!element?.hidden && !selected.hidden">
+                    <ion-col [ngStyle]="{'background-color':element.background}" col-4>{{element?.account}}</ion-col>
+                    <ion-col [ngStyle]="{'background-color':element.background}" col>{{element?.desc}}</ion-col>
+                    <ion-col [ngStyle]="{'background-color':element.background}" col>{{element?.current}}</ion-col>
+                    <ion-col col-12 class="more" *ngIf="!element?.hidden && !selectedAccount.hidden">
                             <ion-row>Current balance {{element?.balance}} </ion-row>
                             <ion-row>Incl. ovrdraft</ion-row>
                             <ion-row>Description {{element?.desc}}</ion-row>
@@ -55,13 +55,13 @@
                     <ion-col col>Balance</ion-col>
                 </ion-row>
                 <ion-row *ngFor="let element of filterItemsOfType('join')" (click)="send(element,fab)" text-center>
-                    <ion-col col-1>
-                        <ion-icon color="primary" name="add-circle"></ion-icon>
+                    <ion-col [ngStyle]="{'background-color':element.background}" col-1>
+                        <ion-icon color="primary" [name]="element?.circle"></ion-icon>
                     </ion-col>
-                    <ion-col col-4>{{element?.account}}</ion-col>
-                    <ion-col col>{{element?.desc}}</ion-col>
-                    <ion-col col>{{element?.balance}}</ion-col>
-                    <ion-col col-12 class="more" *ngIf="!element?.hidden && !selected.hidden">
+                    <ion-col [ngStyle]="{'background-color':element.background}" col-4>{{element?.account}}</ion-col>
+                    <ion-col [ngStyle]="{'background-color':element.background}" col>{{element?.desc}}</ion-col>
+                    <ion-col [ngStyle]="{'background-color':element.background}" col>{{element?.current}}</ion-col>
+                    <ion-col col-12 class="more" *ngIf="!element?.hidden && !selectedAccount.hidden">
                             <ion-row>Current balance {{element?.balance}} </ion-row>
                             <ion-row>Incl. ovrdraft</ion-row>
                             <ion-row>Description {{element?.desc}}</ion-row>
@@ -71,13 +71,13 @@
             </ion-grid>        
         </ion-card-content>
     </ion-card>
-    <ion-fab bottom right #fab>
-        <button ion-fab [disabled]="selected.hidden"><ion-icon name="flame"></ion-icon></button>
+    <!--<ion-fab bottom right #fab>
+        <button ion-fab [disabled]="selectedAccount.hidden"><ion-icon name="flame"></ion-icon></button>
         <ion-fab-list side="top">
           <button ion-fab color="secondary" ><ion-icon name="cash"></ion-icon><ion-label>SEPA transfers</ion-label></button>
           <button ion-fab color="secondary" ><ion-icon name="cash"></ion-icon><ion-label>COOP transfers</ion-label></button>
           <button ion-fab color="secondary" ><ion-icon name="contact"></ion-icon><ion-label>Transaction history</ion-label></button>
           <button ion-fab color="secondary" ><ion-icon name="log-in"></ion-icon><ion-label>Account details</ion-label></button>
         </ion-fab-list>
-      </ion-fab>
+      </ion-fab>-->
 </ion-content>

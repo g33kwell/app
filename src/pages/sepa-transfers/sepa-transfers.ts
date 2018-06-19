@@ -5,7 +5,7 @@ import { HomePage } from '../home/home';
 import { DataProvider } from '../../providers/data/data';
 
 /**
- * Generated class for the CoopTransfersPage page.
+ * Generated class for the SepaTransfersPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -13,18 +13,16 @@ import { DataProvider } from '../../providers/data/data';
 
 @IonicPage()
 @Component({
-  selector: 'page-coop-transfers',
-  templateUrl: 'coop-transfers.html',
+  selector: 'page-sepa-transfers',
+  templateUrl: 'sepa-transfers.html',
 })
-export class CoopTransfersPage {
+export class SepaTransfersPage {
 
-  isStanding = false;
-  transferType = "Transfer to a connected account";
   selectedAccount;
-  accounts;
-  accountToCredit;
+  isStanding = false;
+  accounts
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public app: App, public dataProvider: DataProvider, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public app:App, private dataProvider: DataProvider, public loadingCtrl: LoadingController) {
     this.accounts = this.dataProvider.getAccounts()
     this.selectedAccount = this.accounts[0]
   }
@@ -50,5 +48,7 @@ export class CoopTransfersPage {
   cancel() {
     this.app.getRootNav().setRoot(HomePage)
   }
+
+  
 
 }

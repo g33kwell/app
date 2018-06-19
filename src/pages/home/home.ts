@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { NavController, LoadingController, FabContainer, MenuController, App, Platform } from "ionic-angular";
 import { LoginPage } from "../login/login";
 import { ScreenOrientation } from "@ionic-native/screen-orientation";
+import { DataProvider } from "../../providers/data/data";
 
 @Component({
   selector: "page-home",
@@ -9,69 +10,32 @@ import { ScreenOrientation } from "@ionic-native/screen-orientation";
 })
 export class HomePage {
 
-  data = 
-    [{
-      'account' : '0-857210867-0 EUR',
-      'desc' : 'Description',
-      'balance' : '9276864387',
-      'hidden' : true,
-      'type' : 'self',
-      'circle' : "add-circle"
-    },{
-      'account' : '0-857210867-0 EUR',
-      'desc' : 'Description',
-      'balance' : '9276864387',
-      'hidden' : true,
-      'type' : 'self',
-      'circle' : "add-circle"
-    },
-    {
-      'account' : '0-857210867-0 EUR',
-      'desc' : 'Description',
-      'balance' : '9276864387',
-      'hidden' : true,
-      'type' : 'join',
-      'circle' : "add-circle"
-    },{
-      'account' : '0-857210867-0 EUR',
-      'desc' : 'Description',
-      'balance' : '9276864387',
-      'hidden' : true,
-      'type' : 'join',
-      'circle' : "add-circle"
-    },{
-      'account' : '0-857210867-0 EUR',
-      'desc' : 'Description',
-      'balance' : '9276864387',
-      'hidden' : true,
-      'type' : 'join',
-      'circle' : "add-circle"
-    }];
+  accounts;
 
-  selected: any = {
+  selectedAccount: any = {
     'account' : '',
     'desc' : '',
     'balance' : '',
+    'type' : '',
     'hidden' : true,
-    'circle' : "add-circle"
+    'circle' : "",
+    'background' : ""
   };
 
   constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, private menuController: MenuController,
-     private app: App, private platform: Platform, private screenOrientation:ScreenOrientation) {
+     private app: App, private platform: Platform, private screenOrientation:ScreenOrientation, private dataProvider: DataProvider) {
     this.platform.ready().then(() => {
       if (this.platform.is("cordova"))
         this.screenOrientation.unlock()
     });
-  }
-
-  ngAfterViewInit() {
-    /*let loading = this.loadingCtrl.create({
-      content: `<p><ion-spinner name="bubbles"></ion-spinner></p><p>Loading...</p>`,
-      duration: 3000
+    this.accounts = this.dataProvider.getAccounts();
+    this.accounts.forEach(element => {
+      element['circle'] = 'add-circle',
+      element['hidden'] = true;
+      element['background'] = 'white';
+      element['type'] = 'self';
     });
-
-    loading.present();*/
-      
+    this.accounts[0]['type'] = 'join'
   }
 
   logout(){
@@ -85,21 +49,22 @@ export class HomePage {
   send(element, fab?: FabContainer){
     if(element.hidden){
       element.circle = "remove-circle"
-      this.selected.hidden = true;
+      this.selectedAccount.hidden = true;
+      this.selectedAccount.background = "white"
+      this.selectedAccount.circle = "add-circle"
       element.hidden = false;
-      this.selected = element;
+      element.background = "greenyellow";
+      this.selectedAccount = element;
     }
     else{
       element.circle = "add-circle"
       element.hidden = true;
-      this.selected = element;
-      if (fab !== undefined) {
-        fab.close();
-      }
+      element.background = "white";
+      this.selectedAccount = element;
     }
   }
 
   filterItemsOfType(type) {
-    return this.data.filter(x => x.type == type);
+    return this.accounts.filter(x => x['type'] == type);
   }
 }

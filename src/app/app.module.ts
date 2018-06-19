@@ -28,6 +28,9 @@ import { IonSimpleWizard } from '../pages/ion-simple-wizard/ion-simple-wizard.co
 import { IonSimpleWizardStep } from '../pages/ion-simple-wizard/ion-simple-wizard.step.component';
 import { Keyboard } from '@ionic-native/keyboard';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { VirementConfirmationPage } from '../pages/virement-confirmation/virement-confirmation';
+import { SepaTransfersPage } from '../pages/sepa-transfers/sepa-transfers';
+import { DataProvider } from '../providers/data/data';
 
 
 @NgModule({
@@ -40,7 +43,8 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
     FingerPrintTestPage,
     TestApiPage,
     LoginPage,
-    //MenuComponent,
+    VirementConfirmationPage,
+    SepaTransfersPage,
     IonSimpleWizard,
     IonSimpleWizardStep,
     ],
@@ -62,7 +66,8 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
     FingerPrintTestPage,
     TestApiPage,
     LoginPage,
-    //MenuComponent,
+    VirementConfirmationPage,
+    SepaTransfersPage
   ],
   providers: [
     StatusBar,
@@ -73,7 +78,8 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
     AuthenticationProvider,
     FingerprintAIO,
     Keyboard,
-    ScreenOrientation 
+    ScreenOrientation,
+    DataProvider
   ]
 })
 export class AppModule {}

@@ -8,6 +8,7 @@ import { HomePage } from '../pages/home/home';
 import { AccountDetailsPage } from '../pages/account-details/account-details';
 import { AccountTransactionHistoryPage } from '../pages/account-transaction-history/account-transaction-history';
 import { CoopTransfersPage } from '../pages/coop-transfers/coop-transfers';
+import { SepaTransfersPage } from '../pages/sepa-transfers/sepa-transfers';
 
 @Component({
   templateUrl: 'app.html',
@@ -27,24 +28,24 @@ export class MyApp {
       'group': 'Transfers',
       'elements': [
         { title: 'COOP transfers', name: 'CoopTransfersPage', component: CoopTransfersPage, icon: 'cash' },
-        { title: 'SEPA transfers', name: 'SepaTransfersPage', component: null, icon: 'cash' },
+        { title: 'SEPA transfers', name: 'SepaTransfersPage', component: SepaTransfersPage, icon: 'cash' },
         { title: 'Standing orders', name: 'StandingOrdersPage', component: null, icon: 'cash' }
       ]
     },
     {
       'group': 'Services',
       'elements': [
-        { title: 'Utility Payments', name: 'CoopTransfersPage', component: CoopTransfersPage, icon: 'calendar' },
-        { title: 'Cheque Inquiry', name: 'SepaTransfersPage', component: null, icon: 'contacts' },
-        { title: 'Order Chequebook', name: 'StandingOrdersPage', component: null, icon: 'cash' },
-        { title: 'Setup Fingerprint', name: 'StandingOrdersPage', component: null, icon: 'finger-print' }
+        { title: 'Utility Payments', name: 'Utility Payments', component: CoopTransfersPage, icon: 'calendar' },
+        { title: 'Order Cheque Book', name: 'Order Cheque Book', component: null, icon: 'contacts' },
+        { title: 'Cheque Inquiry', name: 'Cheque Inquiry', component: null, icon: 'cash' },
+        { title: 'Setup Fingerprint', name: 'Setup Fingerprint', component: null, icon: 'finger-print' }
       ]
     }
   ];
 
 
   @ViewChild(Nav) nav: Nav
-  rootPage: any = HomePage;
+  rootPage: any = SepaTransfersPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

@@ -18,7 +18,7 @@
   <ion-card>
     <ion-card-header color="light" style="display:flex;align-items:center;justify-content:space-between">
       Something in greek
-      <ion-icon id="print" *ngIf="selected" (click)="genPdf()" name="print"></ion-icon>
+      <ion-icon id="print" (click)="genPdf()" name="print"></ion-icon>
     </ion-card-header>
 
     <ion-card-content padding>
@@ -37,8 +37,8 @@
         </ion-item>
         <ion-item>-->
         <ion-item>
-            <ion-label color="primary">Account</ion-label>
-            <ion-select (ionChange)="showPrint()" [(ngModel)]="selectedAccount" interface="popover">
+            <ion-label stacked color="primary">Account</ion-label>
+            <ion-select [(ngModel)]="selectedAccount" interface="popover">
               <ion-option *ngFor="let element of accounts" [value]="element">{{element.account}}</ion-option>
             </ion-select>
           </ion-item>

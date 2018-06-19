@@ -1,0 +1,75 @@
+<!--
+  Generated template for the VirementConfirmationPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+
+  <ion-navbar no-border-bottom color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="home"></ion-icon>
+      </button>
+      <button ion-button icon-only>
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="background-color: #fafafa;">
+  <ion-card>
+    <ion-card-header color="light">
+      Summary of the transfer
+    </ion-card-header>
+
+    <ion-card-content padding >
+      <ion-list>
+        <ion-item-group>
+
+          <ion-item>
+            <ion-label color="primary">Account to be debited</ion-label>
+            <ion-input [readonly]="true"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-label color="primary">Account to be credited</ion-label>
+              <ion-input [readonly]="true"></ion-input>
+            </ion-item>
+          <ion-item>
+            <ion-label color="primary">Amount</ion-label>
+            <ion-input [readonly]="true"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label color="primary">First execution date</ion-label>
+            <ion-input [readonly]="true"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-label color="primary">Ending date</ion-label>
+              <ion-input [readonly]="true"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label color="primary">Periodicity</ion-label>
+                <ion-input [readonly]="true"></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label color="primary">Description</ion-label>
+                  <ion-input [readonly]="true"></ion-input>
+                </ion-item>
+        </ion-item-group>
+        <ion-item>
+            <ion-buttons style="display:flex; justify-content: space-between">
+                <button  ion-button color="light" (click)="cancel()">cancel</button>
+                <button  ion-button color="primary" (click)="confirmVirement()">Confirm</button>
+            </ion-buttons>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>
