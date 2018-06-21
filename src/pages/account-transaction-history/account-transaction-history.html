@@ -17,7 +17,7 @@
 <ion-content>
   <ion-card>
     <ion-card-header color="light">
-        Account history transaction
+      Account history transaction
     </ion-card-header>
 
     <ion-card-content padding>
@@ -30,22 +30,22 @@
         </ion-item>
 
         <ion-item>
-          <ion-label color="primary" >Description</ion-label>
+          <ion-label color="primary">Description</ion-label>
           <ion-input [readonly]="true" [value]="selectedAccount?.desc"></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label color="primary" >Current balance</ion-label>
+          <ion-label color="primary">Current balance</ion-label>
           <ion-input [readonly]="true" [value]="selectedAccount?.current"></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label color="primary" >Available balance</ion-label>
+          <ion-label color="primary">Available balance</ion-label>
           <ion-input [readonly]="true" [value]="selectedAccount?.available"></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label color="primary" >Incl. overdraft</ion-label>
+          <ion-label color="primary">Incl. overdraft</ion-label>
           <ion-input [readonly]="true" [value]="selectedAccount?.maturity"></ion-input>
         </ion-item>
 
@@ -56,14 +56,14 @@
             <ion-col col>Amount EUR</ion-col>
           </ion-row>
           <ion-row *ngFor="let element of filterItemsOfAccount()" text-center>
-            <ion-col col>{{element.date}}</ion-col>
+            <ion-col col>{{element.firstExec}}</ion-col>
             <ion-col col>{{element.desc}}</ion-col>
             <ion-col col>
-              <span *ngIf="element.sens == 'debit' && element.debitedAccount == selectedAccount.account">-</span>{{element.amount}}</ion-col>
+              <span *ngIf="element.debited == selectedAccount.account">-</span>{{element.amount}}</ion-col>
           </ion-row>
           <ion-row *ngIf="filterItemsOfAccount().length == 0">
             <ion-col style="background-color:salmon; color:white; justify-content: center; display:flex;">
-                No transactions found
+              No transactions found
             </ion-col>
           </ion-row>
 

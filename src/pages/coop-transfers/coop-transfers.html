@@ -25,23 +25,23 @@
         <ion-item-group>
           <ion-item-divider style="background-color: #fafafa;">Account to be debited</ion-item-divider>
           <ion-item>
-              <ion-label floating color="primary">Account</ion-label>
-              <ion-select [(ngModel)] = "selectedAccount" interface="popover">
-                  <ion-option *ngFor="let element of accounts" [value]="element">{{element.account}}</ion-option>
-              </ion-select>
-            </ion-item>
-            <ion-item>
-              <ion-label floating color="primary">Description</ion-label>
-              <ion-input [readonly]="true" [value]="selectedAccount?.desc"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label floating color="primary">Available balance</ion-label>
-              <ion-input [readonly]="true" [value]="selectedAccount?.available"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label floating color="primary">Incl. overdraft</ion-label>
-              <ion-input [readonly]="true" [value]="selectedAccount?.overdraft"></ion-input>
-            </ion-item>
+            <ion-label floating color="primary">Account</ion-label>
+            <ion-select [(ngModel)]="selectedAccount" interface="popover">
+              <ion-option *ngFor="let element of accounts" [value]="element">{{element.account}}</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label floating color="primary">Description</ion-label>
+            <ion-input [readonly]="true" [value]="selectedAccount?.desc"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating color="primary">Available balance</ion-label>
+            <ion-input [readonly]="true" [value]="selectedAccount?.available"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating color="primary">Incl. overdraft</ion-label>
+            <ion-input [readonly]="true" [value]="selectedAccount?.overdraft"></ion-input>
+          </ion-item>
         </ion-item-group>
         <ion-item-group>
           <ion-item-divider style="background-color: #fafafa;">Account to be credited</ion-item-divider>
@@ -54,62 +54,62 @@
           </ion-item>
           <ion-item>
             <ion-label color="primary">Account</ion-label>
-            <ion-select [(ngModel)] = "accountToCredit" *ngIf="transferType == 'Transfer to a connected account'" interface="popover">
-                <ion-option *ngFor="let element of accounts" [value]="element">{{element.account}}</ion-option>
+            <ion-select [(ngModel)]="accountToCredit" *ngIf="transferType == 'Transfer to a connected account'" interface="popover">
+              <ion-option *ngFor="let element of accounts" [value]="element">{{element.account}}</ion-option>
             </ion-select>
-            <ion-input *ngIf="transferType != 'Transfer to a connected account'"></ion-input>
+            <ion-input [(ngModel)]="accountToCredit" *ngIf="transferType != 'Transfer to a connected account'"></ion-input>
           </ion-item>
           <ion-item *ngIf="transferType == 'Transfer to a connected account'">
             <ion-label color="primary">Current balance</ion-label>
-            <ion-input [readonly]="true"></ion-input>
+            <ion-input [readonly]="true" [value]="accountToCredit?.current"></ion-input>
           </ion-item>
-          </ion-item-group>
-          <ion-item-group>
-              <ion-item-divider style="background-color: #fafafa;">Transfer details</ion-item-divider>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item-divider style="background-color: #fafafa;">Transfer details</ion-item-divider>
           <ion-item>
             <ion-label color="primary">Amount (Limit : 649,03 EUR)</ion-label>
-            <ion-input [(ngModel)] = "amount" ></ion-input>
+            <ion-input [(ngModel)]="transaction.amount"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label>Standing order</ion-label>
-            <ion-checkbox color="secondary" (ionChange)="standing()"></ion-checkbox>
+            <ion-checkbox [(ngModel)]="transaction.standing" color="secondary" (ionChange)="standing()"></ion-checkbox>
           </ion-item>
           <ion-item *ngIf="!isStanding">
             <ion-label color="primary">Execution date</ion-label>
-            <ion-datetime [(ngModel)] = "executionDate" displayFormat="MM/DD/YYYY"></ion-datetime>
+            <ion-datetime [(ngModel)]="transaction.firstExec" displayFormat="MM/DD/YYYY" min="{{today}}" max="2040-10-31"></ion-datetime>
           </ion-item>
           <div *ngIf="isStanding" id="standing">
             <ion-item>
               <ion-label color="primary">Periodicity</ion-label>
-              <ion-select [(ngModel)] = "periodicity" interface="popover">
+              <ion-select [(ngModel)]="transaction.periodicity" interface="popover">
                 <ion-option>Monthly</ion-option>
                 <ion-option>Yearly</ion-option>
               </ion-select>
             </ion-item>
             <ion-item>
               <ion-label color="primary">First execution date</ion-label>
-              <ion-datetime [(ngModel)] = "firstExecution" displayFormat="MM/DD/YYYY"></ion-datetime>
+              <ion-datetime [(ngModel)]="transaction.firstExec" displayFormat="MM/DD/YYYY" min="{{today}}" max="2040-10-31"></ion-datetime>
             </ion-item>
             <ion-item>
               <ion-label color="primary">Ending date
                 <span>*</span>
               </ion-label>
-              <ion-datetime [(ngModel)] = "lastExecution" displayFormat="MM/DD/YYYY"></ion-datetime>
+              <ion-datetime [(ngModel)]="transaction.endDate" displayFormat="MM/DD/YYYY"></ion-datetime>
             </ion-item>
             <div id="notice">
               <span>*</span> leave empty to execute forever
             </div>
           </div>
           <ion-item>
-              <ion-label color="primary">Description</ion-label>
-              <ion-input [(ngModel)] = "desc"></ion-input>
-            </ion-item>
+            <ion-label color="primary">Description</ion-label>
+            <ion-input [(ngModel)]="transaction.desc"></ion-input>
+          </ion-item>
         </ion-item-group>
         <ion-item style="background-color: #fafafa;">
-            <ion-buttons style="display:flex; justify-content: space-between">
-                <button  ion-button color="light" (click)="cancel()">cancel</button>
-                <button  ion-button color="primary" (click)="confirmVirement()">Confirm</button>
-            </ion-buttons>
+          <ion-buttons style="display:flex; justify-content: space-between">
+            <button ion-button color="light" (click)="cancel()">cancel</button>
+            <button ion-button color="primary" (click)="confirmVirement()">Confirm</button>
+          </ion-buttons>
         </ion-item>
       </ion-list>
     </ion-card-content>

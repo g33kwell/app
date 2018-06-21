@@ -37,12 +37,12 @@
         </ion-item>
         <ion-item>-->
         <ion-item>
-            <ion-label stacked color="primary">Account</ion-label>
-            <ion-select [(ngModel)]="selectedAccount" interface="popover">
-              <ion-option *ngFor="let element of accounts" [value]="element">{{element.account}}</ion-option>
-            </ion-select>
-          </ion-item>
-          <ion-item>
+          <ion-label stacked color="primary">Account</ion-label>
+          <ion-select [(ngModel)]="selectedAccount" interface="popover">
+            <ion-option *ngFor="let element of accounts" [value]="element">{{element.account}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
           <ion-label color="primary" stacked>Description</ion-label>
           <ion-input [readonly]="true" [value]="selectedAccount?.desc"></ion-input>
         </ion-item>
@@ -56,19 +56,22 @@
         </ion-item>
         <ion-item>
           <ion-label color="primary" stacked>Availaible amount as of {{date | date: 'dd/MM/yyyy'}}</ion-label>
-          <ion-input [readonly]="true" [value]="selectedAccount?.availableToday"></ion-input>
+          <ion-input [readonly]="true" [value]="selectedAccount?.availableToday + ' EUR'"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label color="primary" stacked>Reserved funds</ion-label>
-          <ion-input [readonly]="true" [value]="selectedAccount?.reserved"></ion-input>
+          <ion-input [readonly]="true" [value]="selectedAccount?.reserved + ' EUR'"></ion-input>
+
         </ion-item>
         <ion-item>
           <ion-label color="primary" stacked>Uncleared cheques</ion-label>
-          <ion-input [readonly]="true" [value]="selectedAccount?.uncleared"></ion-input>
+          <ion-input [readonly]="true" [value]="selectedAccount?.uncleared  + ' EUR'"></ion-input>
+
         </ion-item>
         <ion-item>
           <ion-label color="primary" stacked>Overdraft Limit</ion-label>
-          <ion-input [readonly]="true" [value]="selectedAccount?.overdraft"></ion-input>
+          <ion-input [readonly]="true" [value]="selectedAccount?.overdraft + ' EUR'"></ion-input>
+
         </ion-item>
         <ion-item class="lastItem">
           <ion-label color="primary" stacked>Maturity date of overdraft limit</ion-label>

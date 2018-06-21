@@ -28,44 +28,48 @@
       Summary of the transfer
     </ion-card-header>
 
-    <ion-card-content padding >
+    <ion-card-content padding>
       <ion-list>
         <ion-item-group>
 
           <ion-item>
             <ion-label color="primary">Account to be debited</ion-label>
-            <ion-input [readonly]="true"></ion-input>
+            <ion-input [(ngModel)]="transaction.debited" [readonly]="true"></ion-input>
           </ion-item>
           <ion-item>
-              <ion-label color="primary">Account to be credited</ion-label>
-              <ion-input [readonly]="true"></ion-input>
-            </ion-item>
+            <ion-label color="primary">Account to be credited</ion-label>
+            <ion-input [(ngModel)]="transaction.credited" [readonly]="true"></ion-input>
+          </ion-item>
           <ion-item>
             <ion-label color="primary">Amount</ion-label>
-            <ion-input [readonly]="true"></ion-input>
+            <ion-input [(ngModel)]="transaction.amount" [readonly]="true"></ion-input>
           </ion-item>
-          <ion-item>
+          <ion-item *ngIf="!transaction.standing">
+            <ion-label color="primary">Execution date</ion-label>
+            <ion-input [(ngModel)]="transaction.firstExec" [readonly]="true"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="transaction.standing">
             <ion-label color="primary">First execution date</ion-label>
-            <ion-input [readonly]="true"></ion-input>
+            <ion-input [(ngModel)]="transaction.firstExec" [readonly]="true"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="transaction.standing">
+            <ion-label color="primary">Ending date</ion-label>
+            <ion-input [(ngModel)]="transaction.endDate" [readonly]="true"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="transaction.standing">
+            <ion-label color="primary">Periodicity</ion-label>
+            <ion-input [(ngModel)]="transaction.periodicity" [readonly]="true"></ion-input>
           </ion-item>
           <ion-item>
-              <ion-label color="primary">Ending date</ion-label>
-              <ion-input [readonly]="true"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label color="primary">Periodicity</ion-label>
-                <ion-input [readonly]="true"></ion-input>
-              </ion-item>
-              <ion-item>
-                  <ion-label color="primary">Description</ion-label>
-                  <ion-input [readonly]="true"></ion-input>
-                </ion-item>
+            <ion-label color="primary">Description</ion-label>
+            <ion-input [(ngModel)]="transaction.desc" [readonly]="true"></ion-input>
+          </ion-item>
         </ion-item-group>
         <ion-item>
-            <ion-buttons style="display:flex; justify-content: space-between">
-                <button  ion-button color="light" (click)="cancel()">cancel</button>
-                <button  ion-button color="primary" (click)="confirmVirement()">Confirm</button>
-            </ion-buttons>
+          <ion-buttons style="display:flex; justify-content: space-between">
+            <button ion-button color="light" (click)="cancel()">cancel</button>
+            <button ion-button color="primary" (click)="confirmVirement()">Confirm</button>
+          </ion-buttons>
         </ion-item>
       </ion-list>
     </ion-card-content>
