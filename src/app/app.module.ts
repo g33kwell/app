@@ -32,6 +32,8 @@ import { VirementConfirmationPage } from '../pages/virement-confirmation/viremen
 import { SepaTransfersPage } from '../pages/sepa-transfers/sepa-transfers';
 import { DataProvider } from '../providers/data/data';
 import { StandingOrdersPage } from '../pages/standing-orders/standing-orders';
+import { UtilityPage } from '../pages/utility/utility';
+import { UtilityConfirmationPage } from '../pages/utility-confirmation/utility-confirmation';
 
 
 @NgModule({
@@ -48,7 +50,9 @@ import { StandingOrdersPage } from '../pages/standing-orders/standing-orders';
     SepaTransfersPage,
     IonSimpleWizard,
     IonSimpleWizardStep,
-    StandingOrdersPage
+    StandingOrdersPage,
+    UtilityPage,
+    UtilityConfirmationPage
     ],
   imports: [
     BrowserModule,
@@ -70,7 +74,9 @@ import { StandingOrdersPage } from '../pages/standing-orders/standing-orders';
     LoginPage,
     VirementConfirmationPage,
     SepaTransfersPage,
-    StandingOrdersPage
+    StandingOrdersPage,
+    UtilityPage,
+    UtilityConfirmationPage
   ],
   providers: [
     StatusBar,

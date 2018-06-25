@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-navbar no-border-bottom color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="home"></ion-icon>
+      </button>
+      <button ion-button icon-only>
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header color="light">
+      Utility organisation payement
+    </ion-card-header>
+
+    <ion-card-content padding>
+      <ion-list>
+        <ion-item>
+          <ion-label floating color="primary">Account</ion-label>
+          <ion-select [(ngModel)]="selectedAccount" interface="popover">
+            <ion-option *ngFor="let element of accounts" [value]="element">{{element.account}}</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating color="primary">Description</ion-label>
+          <ion-input [readonly]="true" [value]="selectedAccount?.desc"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating color="primary">Available balance</ion-label>
+          <ion-input [readonly]="true" [value]="selectedAccount?.available"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating color="primary">Organisation name</ion-label>
+          <ion-select [(ngModel)]="selectedOrganisation" interface="popover">
+            <ion-option *ngFor="let element of organisations" [value]="element">{{element.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color="primary">Bill reference</ion-label>
+          <ion-input [(ngModel)]="selectedReference"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color="primary">Amount</ion-label>
+          <ion-input [(ngModel)]="transaction.amount" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-buttons style="display:flex; justify-content: space-between">
+            <button ion-button color="light" (click)="cancel()">cancel</button>
+            <button ion-button color="primary" (click)="confirmVirement()">Confirm</button>
+          </ion-buttons>
+        </ion-item>
+
+      </ion-list>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>

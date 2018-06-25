@@ -97,8 +97,37 @@ export class DataProvider {
   }
 ];
 
+private organisations: any = [
+  {
+    name: "ΔΗΜΟΣ ΑΓΛΑΝΤΖ/AGLANTZIA MUNICI",
+    account: "012-0052760-0"
+  },
+  {
+    name: "ΑΛΙΚΟ ΑΣΦΑΛΙΣΤΙΚΗ/ALICO INSURA",
+    account: "012-0052778-5"
+  },
+  {
+    name: "CABLENET",
+    account: "012-0096760-4"
+  },
+  {
+    name: "ATHK/CYTA",
+    account: "012-0141760-0"
+  }
+]
+
+private references: any = ['S1234567APTE01','EDNS1234567A','VCS1234567A','SES1234567A']
+
   constructor() {
     console.log("Hello DataProvider Provider");
+  }
+
+  getReferences() {
+    return this.references
+  }
+
+  getOrganisations() {
+    return this.organisations;
   }
 
   getAccounts() {
