@@ -16,6 +16,7 @@ import { FingerprintAIO } from "@ionic-native/fingerprint-aio";
 import { ScreenOrientation } from "@ionic-native/screen-orientation";
 import { IonSimpleWizard } from "../ion-simple-wizard/ion-simple-wizard.component";
 import { HomePage } from "../home/home";
+import { AuthenticationProvider } from "../../providers/authentication/authentication";
 /**
  * Generated class for the AuthenticationPage page.
  *
@@ -82,12 +83,13 @@ export class LoginPage {
     private screenOrientation: ScreenOrientation,
     private app: App,
     private menuController: MenuController,
-    private keyboard: Keyboard
+    private keyboard: Keyboard,
+    private authProvider: AuthenticationProvider
   ) {
     this.menuController.enable(false, "myMenu");
 
     this.platform.ready().then(() => {
-      this.faio.isAvailable().then(() => this.finger = true)
+      this.faio.isAvailable().then(() => this.finger = this.authProvider.checkFinger())
                             .catch( () => this.finger = false)
       if (this.platform.is("cordova"))
         this.screenOrientation

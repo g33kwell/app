@@ -11,11 +11,15 @@ import { CoopTransfersPage } from '../pages/coop-transfers/coop-transfers';
 import { SepaTransfersPage } from '../pages/sepa-transfers/sepa-transfers';
 import { StandingOrdersPage } from '../pages/standing-orders/standing-orders';
 import { UtilityPage } from '../pages/utility/utility';
+import { SetupFingerPrintPage } from '../pages/setup-finger-print/setup-finger-print';
+import { FingerprintAIO } from '@ionic-native/fingerprint-aio';
 
 @Component({
   templateUrl: 'app.html',
 })
 export class MyApp {
+
+  fingerAvailable = false;
 
   appPages = [
     {
@@ -40,17 +44,27 @@ export class MyApp {
         { title: 'Utility Payments', name: 'UtilityPage', component: UtilityPage, icon: 'cash' },
         { title: 'Order Cheque Book', name: 'Order Cheque Book', component: null, icon: 'book' },
         { title: 'Cheque Inquiry', name: 'Cheque Inquiry', component: null, icon: 'archive' },
-        { title: 'Setup Fingerprint', name: 'Setup Fingerprint', component: null, icon: 'finger-print' }
+      ]
+    },
+    {
+      'group': 'Security',
+      'elements': [
+        { title: 'Setup Fingerprint', name: 'SetupFingerPrintPage', component: SetupFingerPrintPage, icon: 'finger-print' }
       ]
     }
   ];
 
 
   @ViewChild(Nav) nav: Nav
-  rootPage: any = UtilityPage;
+  rootPage: any = LoginPage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, faio: FingerprintAIO) {
     platform.ready().then(() => {
+
+      faio.isAvailable().then(() => this.fingerAvailable = true)
+                            .catch( () => this.fingerAvailable = false)
+
+
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       // let status bar overlay webview
@@ -61,6 +75,8 @@ export class MyApp {
       //statusBar.styleDefault();
       splashScreen.hide();
     });
+
+      
 
   }
 

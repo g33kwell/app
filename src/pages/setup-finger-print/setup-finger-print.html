@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar no-border-bottom color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="home"></ion-icon>
+      </button>
+      <button ion-button icon-only>
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header color="light">
+      Setup FingerPrint
+    </ion-card-header>
+
+    <ion-card-content padding style="display:flex;justify-content: center; flex-direction: column">
+      <p style="font-size: 1.5rem">Activate this setting to login using your fingerprint</p>
+        <ion-item>
+          <ion-label>Enable FingerPrint</ion-label>
+          <ion-checkbox color="secondary" [(ngModel)]="enabled" (ionChange)="enable()"></ion-checkbox>
+        </ion-item>
+        <p style="color:red">Warning! Enable this setting only if this is your personal device</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

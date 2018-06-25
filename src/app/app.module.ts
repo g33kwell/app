@@ -34,6 +34,7 @@ import { DataProvider } from '../providers/data/data';
 import { StandingOrdersPage } from '../pages/standing-orders/standing-orders';
 import { UtilityPage } from '../pages/utility/utility';
 import { UtilityConfirmationPage } from '../pages/utility-confirmation/utility-confirmation';
+import { SetupFingerPrintPage } from '../pages/setup-finger-print/setup-finger-print';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { UtilityConfirmationPage } from '../pages/utility-confirmation/utility-c
     IonSimpleWizardStep,
     StandingOrdersPage,
     UtilityPage,
-    UtilityConfirmationPage
+    UtilityConfirmationPage, 
+    SetupFingerPrintPage
     ],
   imports: [
     BrowserModule,
@@ -76,7 +78,8 @@ import { UtilityConfirmationPage } from '../pages/utility-confirmation/utility-c
     SepaTransfersPage,
     StandingOrdersPage,
     UtilityPage,
-    UtilityConfirmationPage
+    UtilityConfirmationPage,
+    SetupFingerPrintPage
   ],
   providers: [
     StatusBar,

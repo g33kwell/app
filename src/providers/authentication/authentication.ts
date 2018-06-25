@@ -11,6 +11,7 @@ import { Injectable } from '@angular/core';
 export class AuthenticationProvider {
 
   private isLoggedIn: boolean = false;
+  private isFingerEnabled: boolean = false;
 
   constructor(public http: HttpClient) {
     console.log('Hello AuthenticationProvider Provider');
@@ -26,6 +27,18 @@ export class AuthenticationProvider {
 
   authenticated() : boolean {
     return this.isLoggedIn;
+  }
+
+  enableFinger() {
+    this.isFingerEnabled = false;
+  }
+
+  disabedFinger() {
+    this.isFingerEnabled = false;
+  }
+
+  checkFinger() {
+    return this.isFingerEnabled;
   }
 
 }

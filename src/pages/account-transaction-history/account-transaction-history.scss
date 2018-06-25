@@ -15,16 +15,9 @@ page-account-transaction-history {
         }
     }
 
-    #dateGrid {
-        ion-row {
-            ion-col:nth-child(1) {
-                border-right: 1px solid lightgray;
-            }
-
-            ion-col:nth-child(2) {
-                padding-left: 20px;
-            }
-        }
+    #notfound {
+        border: 1px solid color($colors, primary);
+        padding: 0;
     }
     
     .more {

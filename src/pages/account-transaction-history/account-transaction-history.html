@@ -59,12 +59,15 @@
             <ion-col col>
               <span *ngIf="element.debited == selectedAccount.account">-</span>{{element.amount}}</ion-col>
           </ion-row>
-          <ion-row *ngIf="filterItemsOfAccount().length == 0">
-            <ion-col style="background-color:salmon; color:white; justify-content: center; display:flex;">
+
+        </ion-grid>
+
+        <ion-grid id="notfound" *ngIf="filterItemsOfAccount().length == 0 && filterItemsOfAccount().length != 0">
+          <ion-row>
+            <ion-col style="background-color:#FFB3B3; color:white; justify-content: center; display:flex;">
               No transactions found
             </ion-col>
-          </ion-row>
-
+            </ion-row>
         </ion-grid>
 
       </ion-list>

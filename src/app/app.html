@@ -9,13 +9,15 @@
           <ion-content style="background-color: #fafafa">
 
             <ion-list *ngFor="let element of appPages">
-              <ion-list-header>
-                {{ element.group }}
-              </ion-list-header>
-              <button ion-item menuClose *ngFor="let p of element.elements" (click)="openPage(p)">
-                <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
-                {{p.title}}
-              </button>
+              <div *ngIf="element.group != 'Security' || (element.group == 'Security' && !fingerAvailable)" >
+                <ion-list-header>
+                  {{ element.group }}
+                </ion-list-header>
+                <button ion-item menuClose *ngFor="let p of element.elements" (click)="openPage(p)">
+                  <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
+                  {{p.title}}
+                </button>
+              </div>
             </ion-list>
 
 
