@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { DataProvider } from "../../providers/data/data";
 
@@ -15,8 +15,11 @@ import { DataProvider } from "../../providers/data/data";
   templateUrl: "account-transaction-history.html"
 })
 export class AccountTransactionHistoryPage {
-  isSearch = false;
-  header = "Account history transaction";
+  myInput = "";
+
+  onCancel(e) {
+    this.filterItemsOfAccount("")
+  }
 
   selectedAccount: any = {
     account: "",
@@ -34,7 +37,7 @@ export class AccountTransactionHistoryPage {
     debited: "",
     credited: "",
     amount: "",
-    fistExec: "",
+    firstExec: "",
     endDate: "",
     periodicity: "",
     desc: "",
@@ -52,7 +55,9 @@ export class AccountTransactionHistoryPage {
     this.selectedAccount = this.accounts[0];
   }
 
-  filterItemsOfAccount() {
-    return this.dataProvider.getTransactions(this.selectedAccount.account);
+  filterItemsOfAccount(e) {
+    if(this.myInput == null || this.myInput == "") return this.dataProvider.getTransactions(this.selectedAccount.account);
+    return this.dataProvider.getTransactions(this.selectedAccount.account)
+    .filter(x => x.desc.includes(this.myInput) || x.firstExec.includes(this.myInput) || x.amount.includes(this.myInput))
   }
 }

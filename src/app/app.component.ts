@@ -9,6 +9,7 @@ import { AccountDetailsPage } from '../pages/account-details/account-details';
 import { AccountTransactionHistoryPage } from '../pages/account-transaction-history/account-transaction-history';
 import { CoopTransfersPage } from '../pages/coop-transfers/coop-transfers';
 import { SepaTransfersPage } from '../pages/sepa-transfers/sepa-transfers';
+import { StandingOrdersPage } from '../pages/standing-orders/standing-orders';
 
 @Component({
   templateUrl: 'app.html',
@@ -29,7 +30,7 @@ export class MyApp {
       'elements': [
         { title: 'COOP transfers', name: 'CoopTransfersPage', component: CoopTransfersPage, icon: 'cash' },
         { title: 'SEPA transfers', name: 'SepaTransfersPage', component: SepaTransfersPage, icon: 'cash' },
-        { title: 'Standing orders', name: 'StandingOrdersPage', component: null, icon: 'cash' }
+        { title: 'Standing orders', name: 'StandingOrdersPage', component: StandingOrdersPage, icon: 'cash' }
       ]
     },
     {
@@ -45,7 +46,7 @@ export class MyApp {
 
 
   @ViewChild(Nav) nav: Nav
-  rootPage: any = SepaTransfersPage;
+  rootPage: any = StandingOrdersPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

@@ -24,13 +24,7 @@
         <ion-list>
           <ion-item-group>
             <ion-item-divider style="background-color: #fafafa;">Account to be debited</ion-item-divider>
-            <!--<ion-item>
-              <ion-label color="primary">Category</ion-label>
-              <ion-select interface="popover">
-                <ion-option>Category1</ion-option>
-                <ion-option>Category2</ion-option>
-              </ion-select>
-            </ion-item>-->
+
             <ion-item>
               <ion-label floating color="primary">Account</ion-label>
               <ion-select [(ngModel)] = "selectedAccount" interface="popover">
@@ -52,53 +46,46 @@
           </ion-item-group>
           <ion-item-group>
             <ion-item-divider style="background-color: #fafafa;">Account to be credited</ion-item-divider>
-            <!--<ion-item>
-              <ion-label color="primary">Category</ion-label>
-              <ion-select interface="popover">
-                <ion-option>Category1</ion-option>
-                <ion-option>Category2</ion-option>
-              </ion-select>
-            </ion-item>-->
             <ion-item>
               <ion-label color="primary">BIC</ion-label>
               <ion-input></ion-input>
             </ion-item>
             <ion-item>
               <ion-label color="primary">IBAN</ion-label>
-              <ion-input></ion-input>
+              <ion-input [(ngModel)]="accountToCredit" ></ion-input>
             </ion-item>
           </ion-item-group>
           <ion-item-group>
               <ion-item-divider style="background-color: #fafafa;">Transfer details</ion-item-divider>
             <ion-item>
-              <ion-label   color="primary">Amount (Limit : 649,03 EUR)</ion-label>
-              <ion-input></ion-input>
+              <ion-label color="primary">Amount (Not available)</ion-label>
+              <ion-input [(ngModel)]="transaction.amount"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label>Standing order</ion-label>
-              <ion-checkbox color="secondary" (ionChange)="standing()"></ion-checkbox>
+              <ion-checkbox [(ngModel)]="transaction.standing" color="secondary" (ionChange)="standing()"></ion-checkbox>
             </ion-item>
             <ion-item *ngIf="!isStanding">
               <ion-label color="primary">Execution date</ion-label>
-              <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
+              <ion-datetime [(ngModel)]="transaction.firstExec" displayFormat="MM/DD/YYYY" min="{{today}}" max="2040-10-31"></ion-datetime>
             </ion-item>
             <div *ngIf="isStanding" id="standing">
               <ion-item>
-                <ion-label  color="primary">Periodicity</ion-label>
-                <ion-select interface="popover">
+                <ion-label color="primary">Periodicity</ion-label>
+                <ion-select [(ngModel)]="transaction.periodicity" interface="popover">
                   <ion-option>Monthly</ion-option>
                   <ion-option>Yearly</ion-option>
                 </ion-select>
               </ion-item>
               <ion-item>
                 <ion-label  color="primary">First execution date</ion-label>
-                <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
+                <ion-datetime [(ngModel)]="transaction.firstExec" displayFormat="MM/DD/YYYY" min="{{today}}" max="2040-10-31"></ion-datetime>
               </ion-item>
               <ion-item>
                 <ion-label  color="primary">Ending date
                   <span>*</span>
                 </ion-label>
-                <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
+                <ion-datetime [(ngModel)]="transaction.endDate" displayFormat="MM/DD/YYYY" min="{{today}}" max="2040-10-31"></ion-datetime>
               </ion-item>
               <div id="notice">
                 <span>*</span> leave empty to execute forever
@@ -106,7 +93,7 @@
             </div>
             <ion-item>
               <ion-label color="primary">Description</ion-label>
-              <ion-input></ion-input>
+              <ion-input [(ngModel)]="transaction.desc"></ion-input>
             </ion-item>
           </ion-item-group>
           <ion-item style="background-color: #fafafa;">

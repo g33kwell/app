@@ -26,7 +26,7 @@
           <ion-item-divider style="background-color: #fafafa;">Account to be debited</ion-item-divider>
           <ion-item>
             <ion-label floating color="primary">Account</ion-label>
-            <ion-select [(ngModel)]="selectedAccount" interface="popover">
+            <ion-select [(ngModel)]="selectedAccount" (ionChange)="selectAccountToCredit()" interface="popover">
               <ion-option *ngFor="let element of accounts" [value]="element">{{element.account}}</ion-option>
             </ion-select>
           </ion-item>
@@ -52,12 +52,15 @@
               <ion-option>Transfer to an account in C.C.B</ion-option>
             </ion-select>
           </ion-item>
-          <ion-item>
-            <ion-label color="primary">Account</ion-label>
-            <ion-select [(ngModel)]="accountToCredit" *ngIf="transferType == 'Transfer to a connected account'" interface="popover">
-              <ion-option *ngFor="let element of accounts" [value]="element">{{element.account}}</ion-option>
+          <ion-item *ngIf="transferType == 'Transfer to a connected account'">
+            <ion-label floating color="primary">Account</ion-label>
+            <ion-select [(ngModel)]="accountToCredit" interface="popover">
+              <ion-option *ngFor="let element of filterAccountsToCredit()" [value]="element">{{element.account}}</ion-option>
             </ion-select>
-            <ion-input [(ngModel)]="accountToCredit" *ngIf="transferType != 'Transfer to a connected account'"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="transferType != 'Transfer to a connected account'">
+            <ion-label color="primary">Account</ion-label>
+            <ion-input [(ngModel)]="accountToCreditInput" ></ion-input>
           </ion-item>
           <ion-item *ngIf="transferType == 'Transfer to a connected account'">
             <ion-label color="primary">Current balance</ion-label>
@@ -67,7 +70,7 @@
         <ion-item-group>
           <ion-item-divider style="background-color: #fafafa;">Transfer details</ion-item-divider>
           <ion-item>
-            <ion-label color="primary">Amount (Limit : 649,03 EUR)</ion-label>
+            <ion-label color="primary">Amount (Not available)</ion-label>
             <ion-input [(ngModel)]="transaction.amount"></ion-input>
           </ion-item>
           <ion-item>
@@ -94,7 +97,7 @@
               <ion-label color="primary">Ending date
                 <span>*</span>
               </ion-label>
-              <ion-datetime [(ngModel)]="transaction.endDate" displayFormat="MM/DD/YYYY"></ion-datetime>
+              <ion-datetime [(ngModel)]="transaction.endDate" displayFormat="MM/DD/YYYY" min="{{today}}" max="2040-10-31"></ion-datetime>
             </ion-item>
             <div id="notice">
               <span>*</span> leave empty to execute forever

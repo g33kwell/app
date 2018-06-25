@@ -17,7 +17,7 @@
 <ion-content>
   <ion-card>
     <ion-card-header color="light">
-      Account history transaction
+      Standing Orders
     </ion-card-header>
 
     <ion-card-content padding>
@@ -44,24 +44,27 @@
           <ion-input [readonly]="true" [value]="selectedAccount?.available"></ion-input>
         </ion-item>
 
-        <ion-searchbar style="padding: 0; margin:0" *ngIf="filterItemsOfAccount().length != 0 || myInput != ''" [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel"  (ionCancel)="onCancel($event)">
+        <ion-searchbar style="padding: 0; margin:0" *ngIf="filterItemsOfAccount().length != 0 || myInput != ''" [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)">
         </ion-searchbar>
 
         <ion-grid id="transactionGrid" *ngIf="selectedAccount != null">
           <ion-row text-center class="tableHead">
-            <ion-col col>Date</ion-col>
-            <ion-col col>Description</ion-col>
+            <ion-col col>First Execution</ion-col>
+            <ion-col col>Last Execution</ion-col>
+            <ion-col col>Desccription</ion-col>
+            <ion-col col>Periodicity</ion-col>
             <ion-col col>Amount EUR</ion-col>
           </ion-row>
           <ion-row *ngFor="let element of filterItemsOfAccount()" text-center>
             <ion-col col>{{element.firstExec}}</ion-col>
+            <ion-col col>{{element.endDate}}</ion-col>
             <ion-col col>{{element.desc}}</ion-col>
-            <ion-col col>
-              <span *ngIf="element.debited == selectedAccount.account">-</span>{{element.amount}}</ion-col>
+            <ion-col col>{{element.periodicity}}</ion-col>
+            <ion-col col>{{element.amount}}</ion-col>
           </ion-row>
           <ion-row *ngIf="filterItemsOfAccount().length == 0">
             <ion-col style="background-color:salmon; color:white; justify-content: center; display:flex;">
-              No transactions found
+              No standing order found
             </ion-col>
           </ion-row>
 

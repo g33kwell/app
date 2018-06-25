@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Events, LoadingController, AlertController } from 'ionic-angular';
+import { Events, LoadingController } from 'ionic-angular';
 import { Keyboard } from '@ionic-native/keyboard';
 import { WizardAnimations } from './ion-simple-wizard-animations';
 
@@ -26,8 +26,7 @@ export class IonSimpleWizard {
   login = "144IICD1D"
   //////////////////////////////////
 
-  constructor(public evts: Events, private keyboard: Keyboard, private loadingCtrl: LoadingController,
-    private alertCtrl: AlertController) {
+  constructor(public evts: Events, private keyboard: Keyboard, private loadingCtrl: LoadingController) {
   }
 
   ngOnInit() {

@@ -28,6 +28,7 @@ export class CoopTransfersPage {
   selectedAccount;
   accounts;
   accountToCredit;
+  accountToCreditInput;
   transaction: ITransaction = <ITransaction>{};
   today = new Date().toISOString();
 
@@ -48,16 +49,17 @@ export class CoopTransfersPage {
     else this.isStanding = true;
   }
 
+  filterAccountsToCredit() {
+    return this.accounts.filter(x => x.account != this.selectedAccount.account)
+  }
+
   confirmVirement() {
+    if(this.transferType == "Transfer to a connected account") this.transaction.credited = this.accountToCredit.account;
+    else this.transaction.credited = this.accountToCreditInput;
     this.transaction.debited = this.selectedAccount.account;
-    this.transaction.credited = this.accountToCredit.account;
+
     this.transaction.type = "Coop";
 
-    if (this.transaction.standing) {
-      let t = this.transaction.fistExec;
-      this.transaction.date = t;
-      console.log(this.transaction);
-    }
     let loading = this.loadingCtrl.create({
       content: "Please wait..."
     });
@@ -74,5 +76,11 @@ export class CoopTransfersPage {
 
   cancel() {
     this.app.getRootNav().setRoot(HomePage);
+  }
+
+  selectAccountToCredit() {
+    if(this.transaction.type == "Transfer to a connected account")
+    this.accountToCredit = this.filterAccountsToCredit()[0]
+    
   }
 }

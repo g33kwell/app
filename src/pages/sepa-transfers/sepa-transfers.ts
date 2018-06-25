@@ -20,7 +20,11 @@ export class SepaTransfersPage {
 
   selectedAccount;
   isStanding = false;
-  accounts
+  accounts;
+  accountToCredit
+  transaction: ITransaction = <ITransaction>{};
+  today = new Date().toISOString();
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public app:App, private dataProvider: DataProvider, public loadingCtrl: LoadingController) {
     this.accounts = this.dataProvider.getAccounts()
@@ -35,13 +39,20 @@ export class SepaTransfersPage {
   }
 
   confirmVirement() {
+    this.transaction.debited = this.selectedAccount.account;
+    this.transaction.credited = this.accountToCredit;
+    this.transaction.type = "Sepa";
+
+
     let loading = this.loadingCtrl.create({
       content: "Please wait..."
     });
 
     loading.present();
     setTimeout(() => {
-      loading.dismiss().then(res => this.navCtrl.push(VirementConfirmationPage));
+      loading.dismiss().then(res => this.navCtrl.push(VirementConfirmationPage, {
+        transaction: this.transaction
+      }));
     }, 500);
   }
 

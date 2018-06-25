@@ -20,7 +20,7 @@ export class DataProvider {
       overdraft: "0.00",
       maturity: "",
       bic: "CCBKCY2N",
-      iban: "CY17 0070 1010 0000 0000 2006 2734"
+      iban: "CY17007010100000000020062734"
     },
     {
       account: "085-7210822-1",
@@ -33,7 +33,7 @@ export class DataProvider {
       overdraft: "0.00",
       maturity: "",
       bic: "CCBKCY2N",
-      iban: "CY17 0070 1010 0000 0000 7210 8221"
+      iban: "CY17007010100000000072108221"
     },
     {
       account: "085-7210872-0",
@@ -46,11 +46,56 @@ export class DataProvider {
       overdraft: "0.00",
       maturity: "",
       bic: "CCBKCY2N",
-      iban: "CY17 0070 1010 0000 0000 7210 8720"
+      iban: "CY17007010100000000072108720"
     }
   ];
 
-  private transactions: Array<ITransaction> = [];
+  private transactions: Array<ITransaction> = [
+    {
+      debited: "085-7210872-0",
+      credited: "010-2006273-4",
+      amount: "32.65",
+      firstExec: "2018-06-10",
+      endDate: "2019-06-10",
+      periodicity: "Yearly",
+      desc: "Αντίθετα με αυτό",
+      standing: true,
+      type: "Coop",
+  }, 
+  {
+    debited: "085-7210822-1",
+    credited: "085-7210872-0",
+    amount: "50.00",
+    firstExec: "2018-06-10",
+    endDate: "",
+    periodicity: "",
+    desc: "στην ενότητα",
+    standing: false,
+    type: "Coop",
+  },
+  {
+    debited: "010-2006273-4",
+    credited: "CY17 0070 1010 0000 0000 7210 8720",
+    amount: "137.50",
+    firstExec: "2018-06-10",
+    endDate: "",
+    periodicity: "",
+    desc: "ένα κομμάτι",
+    standing: false,
+    type: "Sepa",
+  },
+  {
+    debited: "010-2006273-4",
+    credited: "023-2006273-4",
+    amount: "1200.00",
+    firstExec: "2018-06-22",
+    endDate: "2024-06-22",
+    periodicity: "Monthly",
+    desc: "στο διαδίκτυο",
+    standing: true,
+    type: "Coop",
+  }
+];
 
   constructor() {
     console.log("Hello DataProvider Provider");
@@ -71,6 +116,12 @@ export class DataProvider {
     );
   }
 
+  getStandingOrders(account) {
+    return this.transactions.filter(
+      x => x.debited == account && x.standing == true
+    );
+  }
+
   updateAccounts(transaction: ITransaction) {
     if (transaction.type == "Coop") {
       let debit = this.accounts.filter(
@@ -80,15 +131,22 @@ export class DataProvider {
         x => x.account == transaction.credited
       )[0];
 
-      this.accounts.filter(x => x.account == transaction.debited)[0].current = (
-        Number(debit.current) - Number(transaction.amount)
-      ).toString();
+      debit.current = (Number(debit.current) - Number(transaction.amount)).toString();
+      debit.available = (Number(debit.available) - Number(transaction.amount)).toString();
 
-      this.accounts.filter(
-        x => x.account == transaction.credited
-      )[0].current = credit.current = (
-        Number(credit.current) + Number(transaction.amount)
-      ).toString();
+      if(credit){
+        credit.current = (Number(credit.current) + Number(transaction.amount)).toString();
+        credit.available = (Number(credit.available) + Number(transaction.amount)).toString();
+      }
+    }
+    else {
+      let debit = this.accounts.filter(
+        x => x.account == transaction.debited
+      )[0];
+
+      debit.current = (Number(debit.current) - Number(transaction.amount)).toString();
+      debit.available = (Number(debit.available) - Number(transaction.amount)).toString();
+
     }
   }
 }

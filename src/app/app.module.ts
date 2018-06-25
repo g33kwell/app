@@ -31,6 +31,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { VirementConfirmationPage } from '../pages/virement-confirmation/virement-confirmation';
 import { SepaTransfersPage } from '../pages/sepa-transfers/sepa-transfers';
 import { DataProvider } from '../providers/data/data';
+import { StandingOrdersPage } from '../pages/standing-orders/standing-orders';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { DataProvider } from '../providers/data/data';
     SepaTransfersPage,
     IonSimpleWizard,
     IonSimpleWizardStep,
+    StandingOrdersPage
     ],
   imports: [
     BrowserModule,
@@ -67,7 +69,8 @@ import { DataProvider } from '../providers/data/data';
     TestApiPage,
     LoginPage,
     VirementConfirmationPage,
-    SepaTransfersPage
+    SepaTransfersPage,
+    StandingOrdersPage
   ],
   providers: [
     StatusBar,

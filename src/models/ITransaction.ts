@@ -2,8 +2,7 @@ interface ITransaction {
   debited;
   credited;
   amount;
-  date;
-  fistExec;
+  firstExec;
   endDate;
   periodicity;
   desc;
