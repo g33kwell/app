@@ -74,11 +74,11 @@ export class SetupFingerPrintPage {
           text: 'Cancel',
           role: 'cancel',
           handler: data => {
-            console.log('Cancel clicked');
+            this.enabled = this.authProvider.disabedFinger()
           }
         },
         {
-          text: 'Password',
+          text: 'Ok',
           handler: data => {
             if (data.password == "azerty.123") {
               this.enabled = this.authProvider.enableFinger()
