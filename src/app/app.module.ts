@@ -36,6 +36,9 @@ import { UtilityPage } from '../pages/utility/utility';
 import { UtilityConfirmationPage } from '../pages/utility-confirmation/utility-confirmation';
 import { SetupFingerPrintPage } from '../pages/setup-finger-print/setup-finger-print';
 
+import { IonicStorageModule } from '@ionic/storage';
+
+
 
 @NgModule({
   declarations: [
@@ -62,7 +65,8 @@ import { SetupFingerPrintPage } from '../pages/setup-finger-print/setup-finger-p
     NoopAnimationsModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
-    IonicStepperModule
+    IonicStepperModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

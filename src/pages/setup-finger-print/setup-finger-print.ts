@@ -26,7 +26,7 @@ export class SetupFingerPrintPage {
 
   enable() {
     if(!this.enabled){
-      this.authProvider.disabedFinger()
+      this.enabled = this.authProvider.disabedFinger();
     }
     else{
       this.checkFinger()
@@ -45,7 +45,9 @@ export class SetupFingerPrintPage {
       .then((result: any) => {
         this.presentPrompt()
       })
-      .catch((error: any) => console.log(error));
+      .catch((error: any) => {
+        this.enabled = this.authProvider.disabedFinger()
+      });
   }
 
   presentAlert(title, msg) {
@@ -59,7 +61,7 @@ export class SetupFingerPrintPage {
 
   presentPrompt() {
     let alert = this.alertCtrl.create({
-      title: 'Login',
+      title: 'Password',
       inputs: [
         {
           name: 'password',
@@ -76,12 +78,13 @@ export class SetupFingerPrintPage {
           }
         },
         {
-          text: 'Login',
+          text: 'Password',
           handler: data => {
             if (data.password == "azerty.123") {
-              this.authProvider.enableFinger()
+              this.enabled = this.authProvider.enableFinger()
               this.presentAlert("Success","FingerPrint authentication is enabled")
             } else {
+              this.enabled = this.authProvider.disabedFinger()
               this.presentAlert("Error","Wrong password")
               return false;
             }

@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage'
 
 /*
   Generated class for the AuthenticationProvider provider.
@@ -13,8 +13,8 @@ export class AuthenticationProvider {
   private isLoggedIn: boolean = false;
   private isFingerEnabled: boolean = false;
 
-  constructor(public http: HttpClient) {
-    console.log('Hello AuthenticationProvider Provider');
+  constructor(private storage:Storage) {
+    this.storage.get('isFingerEnabled').then(val => this.isFingerEnabled = val)
   }
 
   login() {
@@ -30,14 +30,17 @@ export class AuthenticationProvider {
   }
 
   enableFinger() {
-    this.isFingerEnabled = false;
+    this.storage.set('isFingerEnabled',true)
+    return true;
   }
 
   disabedFinger() {
-    this.isFingerEnabled = false;
+    this.storage.set('isFingerEnabled',false)
+    return false;
   }
 
   checkFinger() {
+    this.storage.get('isFingerEnabled').then(val => this.isFingerEnabled = val)
     return this.isFingerEnabled;
   }
 
