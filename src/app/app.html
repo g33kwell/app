@@ -9,7 +9,7 @@
           <ion-content style="background-color: #fafafa">
 
             <ion-list *ngFor="let element of appPages">
-              <div *ngIf="element.group != 'Security' || (element.group == 'Security' && !fingerAvailable)" >
+              <div *ngIf="element.group != 'Security' || (element.group == 'Security' && fingerAvailable)" >
                 <ion-list-header>
                   {{ element.group }}
                 </ion-list-header>
