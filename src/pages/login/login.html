@@ -37,7 +37,7 @@
     </ion-row>
 
     <ion-row>
-      <div *ngIf="finger && currentStep == 1 && !hideFinger" id="icon">
+      <div *ngIf="!hideFinger && finger && currentStep == 1" id="icon">
         <ion-icon id="finger-icon" name="finger-print" (click)="checkFinger()"></ion-icon>
         <p>Tap the icon above to use FingerPrint authentication </p>
       </div>

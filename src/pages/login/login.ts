@@ -63,6 +63,7 @@ export class LoginPage {
   keyboardCheck() {
     if (this.keyboard.isOpen()) {
       this.hideFinger = true;
+      console.log("opened")
     }else {
       this.hideFinger = false;
     }
@@ -142,6 +143,10 @@ export class LoginPage {
       //Do something if back
       console.log("Back pressed: ", this.currentStep);
     });
+  }
+
+  ionViewDidLoad() {
+    this.finger = this.authProvider.checkFinger()
   }
 
   onKeyDown(e) {
