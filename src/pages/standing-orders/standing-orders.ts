@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the StandingOrdersPage page.
@@ -51,7 +52,8 @@ export class StandingOrdersPage {
     console.log(this.myInput)
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider,
+    public app:App) {
     this.accounts = dataProvider.getAccounts();
     this.selectedAccount = this.accounts[0];
   }
@@ -65,6 +67,10 @@ export class StandingOrdersPage {
     if(this.myInput == null || this.myInput == "") return this.dataProvider.getStandingOrders(this.selectedAccount.account);
     return this.dataProvider.getStandingOrders(this.selectedAccount.account)
     .filter(x => x.desc.includes(this.myInput) || x.firstExec.includes(this.myInput) || x.amount.includes(this.myInput))
+  }
+
+  logout(){
+    this.app.getRootNav().setRoot(LoginPage)
   }
 
 }

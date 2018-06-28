@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, App } from 'ionic-angular';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio';
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the SetupFingerPrintPage page.
@@ -20,8 +21,12 @@ export class SetupFingerPrintPage {
   enabled;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public faio: FingerprintAIO,
-    public alertCtrl: AlertController, public authProvider: AuthenticationProvider) {
+    public alertCtrl: AlertController, public authProvider: AuthenticationProvider, public app:App) {
       this.enabled = this.authProvider.checkFinger()
+  }
+
+  ionViewDidLoad() {
+    this.enabled = this.authProvider.checkFinger()
   }
 
   enable() {
@@ -94,6 +99,10 @@ export class SetupFingerPrintPage {
     });
 
     alert.present();
+  }
+
+  logout(){
+    this.app.getRootNav().setRoot(LoginPage)
   }
 
 }

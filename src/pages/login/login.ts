@@ -8,9 +8,11 @@ import {
   AlertController,
   Events,
   App,
-  MenuController,
-  Keyboard
+  MenuController
 } from "ionic-angular";
+
+import { Keyboard } from '@ionic-native/keyboard';
+
 
 import { FingerprintAIO } from "@ionic-native/fingerprint-aio";
 import { ScreenOrientation } from "@ionic-native/screen-orientation";
@@ -60,17 +62,16 @@ export class LoginPage {
     }
   }
 
-  keyboardCheck() {
-    if (this.keyboard.isOpen()) {
-      this.hideFinger = true;
-      console.log("opened")
-    }else {
-      this.hideFinger = false;
-    }
-  }
-
   ngOnInit() {
-     
+    /**
+     * Hide the wizard buttons when the keyboard is open
+     */
+    this.keyboard.onKeyboardShow().subscribe(() => {
+      this.hideFinger = true;
+    });
+    this.keyboard.onKeyboardHide().subscribe(() => {
+      this.hideFinger = false;
+    })
   }
 
   constructor(

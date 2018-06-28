@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, App, LoadingController, AlertContr
 import { DataProvider } from '../../providers/data/data';
 import { HomePage } from '../home/home';
 import { UtilityConfirmationPage } from '../utility-confirmation/utility-confirmation';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the UtilityPage page.
@@ -45,6 +46,10 @@ export class UtilityPage {
     this.selectedOrganisation = this.organisations[0];
 
     this.references = this.dataProvider.getReferences()
+  }
+
+  logout(){
+    this.app.getRootNav().setRoot(LoginPage)
   }
 
   confirmVirement() {

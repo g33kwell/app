@@ -9,6 +9,7 @@ import {
 import { VirementConfirmationPage } from "../virement-confirmation/virement-confirmation";
 import { HomePage } from "../home/home";
 import { DataProvider } from "../../providers/data/data";
+import { LoginPage } from "../login/login";
 
 /**
  * Generated class for the CoopTransfersPage page.
@@ -42,6 +43,10 @@ export class CoopTransfersPage {
     this.accounts = this.dataProvider.getAccounts();
     this.selectedAccount = this.accounts[0];
     this.accountToCredit = this.accounts[1];
+  }
+
+  logout(){
+    this.app.getRootNav().setRoot(LoginPage)
   }
 
   standing() {

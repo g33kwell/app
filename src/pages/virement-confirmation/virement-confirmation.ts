@@ -9,6 +9,7 @@ import {
 } from "ionic-angular";
 import { DataProvider } from "../../providers/data/data";
 import { HomePage } from "../home/home";
+import { LoginPage } from "../login/login";
 
 /**
  * Generated class for the VirementConfirmationPage page.
@@ -52,6 +53,10 @@ export class VirementConfirmationPage {
         this.presentAlert();
       });
     }, 500);
+  }
+
+  logout(){
+    this.app.getRootNav().setRoot(LoginPage)
   }
 
   presentAlert() {

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, App, LoadingController } from 'ion
 import { VirementConfirmationPage } from '../virement-confirmation/virement-confirmation';
 import { HomePage } from '../home/home';
 import { DataProvider } from '../../providers/data/data';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the SepaTransfersPage page.
@@ -58,6 +59,10 @@ export class SepaTransfersPage {
 
   cancel() {
     this.app.getRootNav().setRoot(HomePage)
+  }
+
+  logout(){
+    this.app.getRootNav().setRoot(LoginPage)
   }
 
   

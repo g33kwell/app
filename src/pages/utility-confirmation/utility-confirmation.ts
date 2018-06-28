@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, App, LoadingController, AlertController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import { HomePage } from '../home/home';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the UtilityConfirmationPage page.
@@ -32,6 +33,10 @@ export class UtilityConfirmationPage {
 
   cancel() {
     this.navCtrl.pop();
+  }
+
+  logout(){
+    this.app.getRootNav().setRoot(LoginPage)
   }
 
   confirmVirement() {

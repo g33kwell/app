@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, App } from 'ionic-angular';
 
 import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
@@ -7,6 +7,7 @@ import { FileOpener } from '@ionic-native/file-opener';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { DataProvider } from '../../providers/data/data';
+import { LoginPage } from '../login/login';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 
@@ -35,7 +36,8 @@ export class AccountDetailsPage {
   accounts;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private file: File, private fileOpener: FileOpener, private plt: Platform, private dataProvider: DataProvider) {
+    private file: File, private fileOpener: FileOpener, private plt: Platform, private dataProvider: DataProvider,
+  public app:App) {
       this.accounts = this.dataProvider.getAccounts()
   }
 
@@ -63,13 +65,13 @@ export class AccountDetailsPage {
             widths: ['50%', '*'],
             body: [
               [{ text: 'Greek/Details IBAN/BIC', style: 'header', colSpan: 2, alignment: 'center' }, {}],
-              [{ text: 'Something greek', style: 'subheader', colSpan: 2, alignment: 'center' }, {}],
+              [{ text: 'Αντίθετα με αυτό', style: 'subheader', colSpan: 2, alignment: 'center' }, {}],
               [{ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 500, y2: 0, lineWidth: 0.1 }], margin: [0, 0, 0, 15] }, {}],
-              [{ margin: [0, 0, 0, 70], text: 'Greek/Customer', style: 'cell' }, { fontSize: 18, text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor' }],
-              [{ margin: [0, 0, 0, 30], text: 'Greek/Account', style: 'cell' }, { fontSize: 18, text: '085-7210867-0 EUR' }],
-              [{ margin: [0, 0, 0, 30], text: 'Greek Greek/Account Type', style: 'cell' }, { fontSize: 18, text: 'Description' }],
+              [{ margin: [0, 0, 0, 70], text: 'Greek/Customer', style: 'cell' }, { fontSize: 18, text: 'χωρίς νόημα, από τον 15ο αιώνα, όταν ένας ανώνυμος τυπογράφος πήρε ένα δοκίμιο και' }],
+              [{ margin: [0, 0, 0, 30], text: 'Greek/Account', style: 'cell' }, { fontSize: 18, text: this.selectedAccount.account }],
+              [{ margin: [0, 0, 0, 30], text: 'Greek Greek/Account Type', style: 'cell' }, { fontSize: 18, text: this.selectedAccount.desc }],
               [{ text: 'IBAN', style: 'ibic' }, { text: 'BIC', style: 'ibic' }],
-              [{ text: 'CY69 0070 8510 0000 0000 7210 8670', style: 'iban' }, { text: 'CCBKCY2N', style: 'iban' }],
+              [{ text: this.selectedAccount.iban, style: 'iban' }, { text: this.selectedAccount.bic, style: 'iban' }],
             ]
           }
         },
@@ -156,6 +158,10 @@ export class AccountDetailsPage {
       // On a browser simply use download!
       this.pdfObj.download();
     }
+  }
+
+  logout(){
+    this.app.getRootNav().setRoot(LoginPage)
   }
 
 }
