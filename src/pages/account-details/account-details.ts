@@ -64,12 +64,12 @@ export class AccountDetailsPage {
           table: {
             widths: ['50%', '*'],
             body: [
-              [{ text: 'Greek/Details IBAN/BIC', style: 'header', colSpan: 2, alignment: 'center' }, {}],
+              [{ text: 'Λεπτομέριες/Details IBAN/BIC', style: 'header', colSpan: 2, alignment: 'center' }, {}],
               [{ text: 'Αντίθετα με αυτό', style: 'subheader', colSpan: 2, alignment: 'center' }, {}],
               [{ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 500, y2: 0, lineWidth: 0.1 }], margin: [0, 0, 0, 15] }, {}],
-              [{ margin: [0, 0, 0, 70], text: 'Greek/Customer', style: 'cell' }, { fontSize: 18, text: 'χωρίς νόημα, από τον 15ο αιώνα, όταν ένας ανώνυμος τυπογράφος πήρε ένα δοκίμιο και' }],
-              [{ margin: [0, 0, 0, 30], text: 'Greek/Account', style: 'cell' }, { fontSize: 18, text: this.selectedAccount.account }],
-              [{ margin: [0, 0, 0, 30], text: 'Greek Greek/Account Type', style: 'cell' }, { fontSize: 18, text: this.selectedAccount.desc }],
+              [{ margin: [0, 0, 0, 70], text: 'Πελάτης/Customer', style: 'cell' }, { fontSize: 18, text: 'χωρίς νόημα, από τον 15ο αιώνα, όταν ένας ανώνυμος τυπογράφος πήρε ένα δοκίμιο και' }],
+              [{ margin: [0, 0, 0, 30], text: 'λογαριασμός/Account', style: 'cell' }, { fontSize: 18, text: this.selectedAccount.account }],
+              [{ margin: [0, 0, 0, 30], text: 'Τύπος Λογαριασμού/Account Type', style: 'cell' }, { fontSize: 18, text: this.selectedAccount.desc }],
               [{ text: 'IBAN', style: 'ibic' }, { text: 'BIC', style: 'ibic' }],
               [{ text: this.selectedAccount.iban, style: 'iban' }, { text: this.selectedAccount.bic, style: 'iban' }],
             ]

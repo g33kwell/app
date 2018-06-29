@@ -37,6 +37,8 @@ import { UtilityConfirmationPage } from '../pages/utility-confirmation/utility-c
 import { SetupFingerPrintPage } from '../pages/setup-finger-print/setup-finger-print';
 
 import { IonicStorageModule } from '@ionic/storage';
+import { OrderChequeBookPage } from '../pages/order-cheque-book/order-cheque-book';
+import { ChequeInquiryPage } from '../pages/cheque-inquiry/cheque-inquiry';
 
 
 
@@ -57,7 +59,9 @@ import { IonicStorageModule } from '@ionic/storage';
     StandingOrdersPage,
     UtilityPage,
     UtilityConfirmationPage, 
-    SetupFingerPrintPage
+    SetupFingerPrintPage,
+    OrderChequeBookPage,
+    ChequeInquiryPage
     ],
   imports: [
     BrowserModule,
@@ -83,7 +87,9 @@ import { IonicStorageModule } from '@ionic/storage';
     StandingOrdersPage,
     UtilityPage,
     UtilityConfirmationPage,
-    SetupFingerPrintPage
+    SetupFingerPrintPage,
+    OrderChequeBookPage,
+    ChequeInquiryPage
   ],
   providers: [
     StatusBar,

@@ -16,9 +16,11 @@
 
 <ion-content>
   <ion-card>
-    <ion-card-header color="light" style="display:flex;align-items:center;justify-content:space-between">
-      Account details
-      <ion-icon id="print" (click)="genPdf()" name="print"></ion-icon>
+    <ion-card-header color="light" style="padding: 3px 16px 4px 16px;display: flex; align-items: center; justify-content: space-between">
+      <span>Account details</span>
+      <button style="box-shadow: none !important;" ion-button icon-only (click)="genPdf()">
+          <ion-icon name="print"></ion-icon>
+        </button>
     </ion-card-header>
 
     <ion-card-content padding>

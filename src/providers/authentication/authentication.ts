@@ -43,5 +43,5 @@ export class AuthenticationProvider {
     this.storage.get('isFingerEnabled').then(val => this.isFingerEnabled = val)
     return this.isFingerEnabled;
   }
-
+  
 }

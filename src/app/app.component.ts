@@ -13,6 +13,8 @@ import { StandingOrdersPage } from '../pages/standing-orders/standing-orders';
 import { UtilityPage } from '../pages/utility/utility';
 import { SetupFingerPrintPage } from '../pages/setup-finger-print/setup-finger-print';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio';
+import { OrderChequeBookPage } from '../pages/order-cheque-book/order-cheque-book';
+import { ChequeInquiryPage } from '../pages/cheque-inquiry/cheque-inquiry';
 
 @Component({
   templateUrl: 'app.html',
@@ -42,8 +44,8 @@ export class MyApp {
       'group': 'Services',
       'elements': [
         { title: 'Utility Payments', name: 'UtilityPage', component: UtilityPage, icon: 'cash' },
-        { title: 'Order Cheque Book', name: 'Order Cheque Book', component: null, icon: 'book' },
-        { title: 'Cheque Inquiry', name: 'Cheque Inquiry', component: null, icon: 'archive' },
+        { title: 'Order Cheque Book', name: 'OrderChequeBookPage', component: OrderChequeBookPage, icon: 'book' },
+        { title: 'Cheque Inquiry', name: 'ChequeInquiryPage', component: ChequeInquiryPage, icon: 'archive' },
       ]
     },
     {
@@ -56,7 +58,7 @@ export class MyApp {
 
 
   @ViewChild(Nav) nav: Nav
-  rootPage: any = LoginPage;
+  rootPage: any = OrderChequeBookPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, faio: FingerprintAIO) {
     platform.ready().then(() => {
