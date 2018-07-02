@@ -15,6 +15,10 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+.fixed-content {
+    background-color: #fafafa;
+}
+
 ion-card-header {
     background-color: color($colors, primary);
     color: white !important;

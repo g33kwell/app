@@ -1,6 +1,6 @@
 <ion-split-pane>
     <ion-nav [root]="rootPage" (loggedIn)="test()" #content swipeBackEnabled="false" main></ion-nav>
-    <ion-menu id="myMenu" [content]="content">
+    <ion-menu mode="ios" id="myMenu" [content]="content">
         <ion-header>
             <ion-toolbar color="primary">
               <ion-title>Menu</ion-title>

@@ -14,14 +14,63 @@
     </ion-navbar>
   </ion-header>
   
-  <ion-content>
+  <ion-content style="background-color: #fafafa">
     <ion-card>
       <ion-card-header color="light">
         Order Cheque Book
       </ion-card-header>
   
       <ion-card-content padding>
-        
+          <ion-list>
+              <ion-item>
+                  <ion-label floating color="primary">Account</ion-label>
+                  <ion-select [(ngModel)]="selectedAccount" interface="popover">
+                    <ion-option *ngFor="let element of accounts" [value]="element">{{element.account}}</ion-option>
+                  </ion-select>
+                </ion-item>
+                <ion-grid padding>
+                    <ion-row>
+                      <label style="color:#00B2AA">Number of leaves</label>
+                    </ion-row>
+                    <ion-row style="display:flex;justify-content: center;">
+                      <ion-col col-3 style="display:flex;align-items: center;justify-content: space-around">
+                          <ion-label color="primary">5</ion-label>
+                          <ion-checkbox [(ngModel)]="leaf5" color="secondary" (ionChange)="onChangeLeaves5()"></ion-checkbox>
+                      </ion-col>
+                      <ion-col col-1>
+
+                      </ion-col>
+                      <ion-col col-3 style="display:flex;align-items: center">
+                          <ion-label color="primary">10</ion-label>
+                          <ion-checkbox [(ngModel)]="leaf10" color="secondary" (ionChange)="onChangeLeaves10()"></ion-checkbox>
+                        </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                  <ion-grid padding>
+                      <ion-row>
+                        <label style="color:#00B2AA">Quantity</label>
+                      </ion-row>
+                      <ion-row style="display:flex;justify-content: center;">
+                        <ion-col col-3 style="display:flex;align-items: center;justify-content: space-around">
+                            <ion-label color="primary">1</ion-label>
+                            <ion-checkbox [(ngModel)]="quant1" color="secondary" (ionChange)="onChangeQuant1()"></ion-checkbox>
+                        </ion-col>
+                        <ion-col col-1>
+  
+                        </ion-col>
+                        <ion-col col-3 style="display:flex;align-items: center">
+                            <ion-label color="primary">2</ion-label>
+                            <ion-checkbox [(ngModel)]="quant2" color="secondary" (ionChange)="onChangeQuant2()"></ion-checkbox>
+                          </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                    <ion-item>
+                        <ion-buttons style="display:flex; justify-content: space-between">
+                          <button ion-button color="light" (click)="cancel()">cancel</button>
+                          <button ion-button color="primary" (click)="confirmCheque()">Confirm</button>
+                        </ion-buttons>
+                      </ion-item>
+          </ion-list>
       </ion-card-content>
   
     </ion-card>
