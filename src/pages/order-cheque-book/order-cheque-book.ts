@@ -19,12 +19,17 @@ export class OrderChequeBookPage {
 
   selectedAccount;
   accounts;
+  requests = [];
 
   leaf5 = true;
   leaf10 = false;
 
   quant1 = true;
   quant2 = false;
+
+  date = new Date();
+
+  request: any = {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider,
     public app:App, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
@@ -91,7 +96,15 @@ export class OrderChequeBookPage {
             setTimeout(() => {
               loading
                 .dismiss()
-                .then(val => this.presentAlert('Success','Your request is being processed'));
+                .then(val => {
+                  this.request.account = this.selectedAccount.account
+                  this.request.date = this.date.toLocaleDateString()
+                  this.request.status = "pending"
+                  this.request.quant = quant
+                  this.request.leaf = leaf
+                  this.presentAlert('Success','Your request is being processed')
+                  this.requests.push(this.request)
+                });
             }, 1000);
           }
         }

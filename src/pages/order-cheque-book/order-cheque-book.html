@@ -71,6 +71,20 @@
                         </ion-buttons>
                       </ion-item>
           </ion-list>
+
+          <ion-grid>
+            <ion-row *ngFor="let element of requests">
+              <ion-col col-4>
+                {{element?.date}}
+              </ion-col>
+              <ion-col>
+                  {{element?.account}} ({{element?.quant}} of {{element?.leaf}})
+                </ion-col>
+                <ion-col col-3 style="color:orange">
+                    {{element?.status}}
+                  </ion-col>
+            </ion-row>
+          </ion-grid>
       </ion-card-content>
   
     </ion-card>
