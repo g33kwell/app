@@ -1,3 +1,6 @@
 page-cheque-inquiry {
-
+    #notfound {
+        border: 1px solid color($colors, primary);
+        padding: 0;
+    }
 }

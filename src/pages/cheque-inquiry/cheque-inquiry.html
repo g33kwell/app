@@ -1,18 +1,37 @@
-<!--
-  Generated template for the ChequeInquiryPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>ChequeInquiry</ion-title>
+  <ion-navbar no-border-bottom color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="home"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
+<ion-content>
+  <ion-card>
+    <ion-card-header color="light">
+      Cheque inquiry
+    </ion-card-header>
 
-<ion-content padding>
+    <ion-card-content padding>
 
+
+        <ion-grid id="notfound" *ngIf="1 == 1">
+          <ion-row>
+            <ion-col style="background-color:#FFB3B3; color:white; justify-content: center; display:flex;">
+              No cheques found
+            </ion-col>
+            </ion-row>
+        </ion-grid>
+
+
+    </ion-card-content>
+  </ion-card>
 </ion-content>

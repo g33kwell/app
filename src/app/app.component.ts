@@ -58,7 +58,7 @@ export class MyApp {
 
 
   @ViewChild(Nav) nav: Nav
-  rootPage: any = OrderChequeBookPage;
+  rootPage: any = LoginPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, faio: FingerprintAIO) {
     platform.ready().then(() => {
